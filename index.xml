@@ -6,35 +6,28 @@
     <description>Recent content on Jerry Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Nov 2017 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://huang-0421.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>1</title>
-      <link>https://huang-0421.github.io/2017/11/04/istio-install_and_example/</link>
-      <pubDate>Sat, 04 Nov 2017 12:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/2017/11/04/istio-install_and_example/</guid>
-      <description>&lt;p&gt;Ffff&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Istio及Bookinfo示例程序安装试用笔记</title>
-      <link>https://huang-0421.github.io/2017/11/04/istio-install_and_example/</link>
-      <pubDate>Sat, 04 Nov 2017 12:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/2017/11/04/istio-install_and_example/</guid>
-      <description>&lt;p&gt;Fafafa&lt;/p&gt;</description>
+      <title>爱你贝贝</title>
+      <link>https://huang-0421.github.io/2025/9/23/demo/</link>
+      <pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/2025/9/23/demo/</guid>
+      <description>&lt;h2 id=&#34;您辛苦啦&#34;&gt;您辛苦啦&lt;/h2&gt;&#xA;&lt;p&gt;啦啦啦啦，贝贝辛苦啦&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
       <link>https://huang-0421.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://huang-0421.github.io/about/</guid>
-      <description>&lt;h2 id=&#34;about-me&#34;&gt;About Me&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Huabing Zhao&lt;/em&gt;&lt;/strong&gt; is a software architect, an Istio Member and an ONAP PTL. He has a solid experience in the information and telecommunication technology industry for more than 17 years.&lt;/p&gt;&#xA;&lt;p&gt;Throughout his career, he has built a number of large-scale, cross-country software systems, most of them are still running in production.&lt;/p&gt;&#xA;&lt;p&gt;He loves open source and has been contributing to various open source projects, he is a member of Istio,  previous PTL of ONAP, the author of the Hugo clean-white theme and the open source project Aeraki Mesh.&lt;/p&gt;</description>
+      <description></description>
     </item>
     <item>
       <title></title>
       <link>https://huang-0421.github.io/notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://huang-0421.github.io/notes/</guid>
-      <description>&lt;h2 id=&#34;go-语言学习笔记&#34;&gt;&lt;a href=&#34;https://zhaohuabing.com/learning-golang&#34;&gt;Go 语言学习笔记&lt;/a&gt;&lt;/h2&gt;&#xA;&lt;h2 id=&#34;envoy-学习笔记&#34;&gt;&lt;a href=&#34;https://zhaohuabing.com/learning-envoy&#34;&gt;Envoy 学习笔记&lt;/a&gt;&lt;/h2&gt;</description>
+      <description>&lt;h2 id=&#34;学习笔记&#34;&gt;学习笔记&lt;/h2&gt;</description>
     </item>
     <item>
       <title></title>
