@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xxx on Jerry Blog</title>
+    <link>https://huang-0421.github.io/tags/xxx/</link>
+    <description>Recent content in Xxx on Jerry Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Nov 2017 12:00:00 +0000</lastBuildDate>
+    <atom:link href="https://huang-0421.github.io/tags/xxx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1</title>
+      <link>https://huang-0421.github.io/2017/11/04/istio-install_and_example/</link>
+      <pubDate>Sat, 04 Nov 2017 12:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/2017/11/04/istio-install_and_example/</guid>
+      <description>&lt;p&gt;Ffff&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Istio及Bookinfo示例程序安装试用笔记</title>
+      <link>https://huang-0421.github.io/2017/11/04/istio-install_and_example/</link>
+      <pubDate>Sat, 04 Nov 2017 12:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/2017/11/04/istio-install_and_example/</guid>
+      <description>&lt;p&gt;Fafafa&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
