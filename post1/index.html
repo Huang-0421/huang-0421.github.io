@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jerry Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/postImg/1.jpg">
+    <meta property="twitter:image" content="/img/postImg/1.jpg" />
+    
+
+    
+    <meta name="title" content="二叉树的遍历方法" />
+    <meta property="og:title" content="二叉树的遍历方法" />
+    <meta property="twitter:title" content="二叉树的遍历方法" />
+    
+
+    
+    <meta name="description" content="二叉树的三种遍历方式，前序遍历、中序遍历、后序遍历">
+    <meta property="og:description" content="二叉树的三种遍历方式，前序遍历、中序遍历、后序遍历" />
+    <meta property="twitter:description" content="二叉树的三种遍历方式，前序遍历、中序遍历、后序遍历" />
+    
+
+    <meta property="og:url" content="http://localhost:1313/post1/" />
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="黄瑞杰, huangruijie, Huangruijie, Jerry, 黄瑞杰的网络日志, 黄瑞杰的博客, Jerry Blog, 博客, 个人网站, 互联网, Web, ROS, 机器人, 本科成长,  计算机专业">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>二叉树的遍历方法 | 黄瑞杰的博客 | Jerry Blog</title>
+
+    <link rel="canonical" href="/post1/">
+
+    
+
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.min.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jerry Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">All Posts</a>
+                    </li>
+                    
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">ARCHIVE</a></li>
+                    
+                        <li><a href="/notes//">NOTES</a></li>
+                    
+                        <li><a href="/about//">ABOUT</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/postImg/1.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>二叉树的遍历方法</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                黄瑞杰
+                             
+                            on 
+                            Wednesday, September 24, 2025
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="前言">前言</h1>
+<p>二叉树的遍历方法分为<strong>深度优先遍历</strong>与<strong>宽度优先遍历</strong>，其中深度优先遍历又以根节点的访问时机分为<strong>前序遍历</strong>、<strong>中序遍历</strong>与<strong>后序遍历</strong>，而宽度优先遍历（层序遍历）则是一层一层往下遍历。</p>
+<h1 id="正文">正文</h1>
+<h3 id="前序遍历">前序遍历</h3>
+<p>前序遍历有<strong>递归</strong>和<strong>迭代</strong>两种实现方式</p>
+<p>递归实现：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">TreeNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> val;
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> left;
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> right;
+</span></span><span style="display:flex;"><span>    TreeNode(<span style="color:#8be9fd">int</span> x) <span style="color:#ff79c6">:</span> val(x), left(<span style="color:#8be9fd;font-style:italic">NULL</span>), right(<span style="color:#8be9fd;font-style:italic">NULL</span>) {}   <span style="color:#6272a4">//构造函数初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">preorderTraversal</span>(TreeNode<span style="color:#ff79c6">*</span> root, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> result) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">==</span> <span style="color:#8be9fd;font-style:italic">NULL</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    result.push_back(root<span style="color:#ff79c6">-&gt;</span>val); <span style="color:#6272a4">// 将当前节点的值加入结果列表
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    preorderTraversal(root<span style="color:#ff79c6">-&gt;</span>left, result); <span style="color:#6272a4">// 递归访问左子树
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    preorderTraversal(root<span style="color:#ff79c6">-&gt;</span>right, result); <span style="color:#6272a4">// 递归访问右子树
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> preorderTraversal(TreeNode<span style="color:#ff79c6">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> result;
+</span></span><span style="display:flex;"><span>    preorderTraversal(root, result);      <span style="color:#6272a4">// 调用重载函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>迭代实现：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">preorderTraversal</span>(TreeNode<span style="color:#ff79c6">*</span> root) {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>std<span style="color:#ff79c6">::</span>stack<span style="color:#ff79c6">&lt;</span>TreeNode<span style="color:#ff79c6">*&gt;</span> stack;
+</span></span><span style="display:flex;"><span>stack.push(root);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">while</span> (<span style="color:#ff79c6">!</span>stack.empty()) {
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> current <span style="color:#ff79c6">=</span> stack.top();
+</span></span><span style="display:flex;"><span>    stack.pop();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> current<span style="color:#ff79c6">-&gt;</span>value <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34; &#34;</span>; <span style="color:#6272a4">// 访问节点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (current<span style="color:#ff79c6">-&gt;</span>right <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        stack.push(current<span style="color:#ff79c6">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>    }<span style="color:#6272a4">//右孩子先进后出
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (current<span style="color:#ff79c6">-&gt;</span>left <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        stack.push(current<span style="color:#ff79c6">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>    }<span style="color:#6272a4">//左孩子后进先出
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="中序遍历">中序遍历</h3>
+<p>中序遍历的递归实现与前序遍历的区别仅仅是：<strong>中序遍历在递归访问左子树和递归访问右子树之间将节点加入结果列表。</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">preorderTraversal</span>(TreeNode<span style="color:#ff79c6">*</span> root, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> result) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">==</span> <span style="color:#8be9fd;font-style:italic">NULL</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    preorderTraversal(root<span style="color:#ff79c6">-&gt;</span>left, result); <span style="color:#6272a4">// 递归访问左子树
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    result.push_back(root<span style="color:#ff79c6">-&gt;</span>val); <span style="color:#6272a4">// 将当前节点的值加入结果列表
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    preorderTraversal(root<span style="color:#ff79c6">-&gt;</span>right, result); <span style="color:#6272a4">// 递归访问右子树
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> preorderTraversal(TreeNode<span style="color:#ff79c6">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> result;
+</span></span><span style="display:flex;"><span>    preorderTraversal(root, result);      <span style="color:#6272a4">// 调用重载函数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>同理，<strong>后序遍历</strong>则是<strong>在递归访问左子树和右子树之后将节点加入结果列表</strong>，代码不在赘述。</p></blockquote>
+<p>中序遍历的迭代实现也是通过栈来实现：</p>
+<p>​    我们使用了一个栈来保存经过的节点。我们从根节点开始，将当前节点以及其左子树中的节点都入栈，直到遇到叶子节点。然后，弹出栈顶节点，将其值加入结果列表，并将当前节点指向其右子树。然后，重复上述步骤，直到栈为空且当前节点为空。最终，返回得到的结果列表，即为中序遍历的结果。代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> inorderTraversal(TreeNode<span style="color:#ff79c6">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> res;
+</span></span><span style="display:flex;"><span>    stack<span style="color:#ff79c6">&lt;</span>TreeNode<span style="color:#ff79c6">*&gt;</span> stk;
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> curr <span style="color:#ff79c6">=</span> root;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span> (curr <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span> <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>stk.empty()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (curr <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            stk.push(curr);
+</span></span><span style="display:flex;"><span>            curr <span style="color:#ff79c6">=</span> curr<span style="color:#ff79c6">-&gt;</span>left;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        curr <span style="color:#ff79c6">=</span> stk.top();
+</span></span><span style="display:flex;"><span>        stk.pop();
+</span></span><span style="display:flex;"><span>        res.push_back(curr<span style="color:#ff79c6">-&gt;</span>val);
+</span></span><span style="display:flex;"><span>        curr <span style="color:#ff79c6">=</span> curr<span style="color:#ff79c6">-&gt;</span>right;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> res;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="后序遍历">后序遍历</h3>
+<p>后序遍历的迭代实现：</p>
+<p>我们从根节点开始，将每个节点以及其左子树中的节点都入栈，直到遇到叶子节点。然后，检查栈顶节点的右子树是否为空，或者是否已经访问过。如果是，则将栈顶节点的值加入结果列表，并将其弹出栈。然后，将<code>prev</code>指针指向当前弹出的节点，继续处理下一个节点。如果栈顶节点的右子树不为空且未被访问过，则将当前节点指向其右子树，继续迭代处理右子树。最终，返回得到的结果列表，即为后序遍历的结果。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> postorderTraversal(TreeNode<span style="color:#ff79c6">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> res;
+</span></span><span style="display:flex;"><span>    stack<span style="color:#ff79c6">&lt;</span>TreeNode<span style="color:#ff79c6">*&gt;</span> stk;
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> prev <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span> (root <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span> <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>stk.empty()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (root <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            stk.push(root);
+</span></span><span style="display:flex;"><span>            root <span style="color:#ff79c6">=</span> root<span style="color:#ff79c6">-&gt;</span>left;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        root <span style="color:#ff79c6">=</span> stk.top();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (root<span style="color:#ff79c6">-&gt;</span>right <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">nullptr</span> <span style="color:#ff79c6">||</span> root<span style="color:#ff79c6">-&gt;</span>right <span style="color:#ff79c6">==</span> prev) {
+</span></span><span style="display:flex;"><span>            res.push_back(root<span style="color:#ff79c6">-&gt;</span>val);
+</span></span><span style="display:flex;"><span>            stk.pop();
+</span></span><span style="display:flex;"><span>            prev <span style="color:#ff79c6">=</span> root;
+</span></span><span style="display:flex;"><span>            root <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>            root <span style="color:#ff79c6">=</span> root<span style="color:#ff79c6">-&gt;</span>right;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> res;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="宽度优先遍历层次遍历">宽度优先遍历（层次遍历）</h3>
+<p>宽度优先遍历通过队列来实现，代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> bfs(TreeNode<span style="color:#ff79c6">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> res;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">nullptr</span>) <span style="color:#ff79c6">return</span> res;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    queue<span style="color:#ff79c6">&lt;</span>TreeNode<span style="color:#ff79c6">*&gt;</span> q;
+</span></span><span style="display:flex;"><span>    q.push(root);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span> (<span style="color:#ff79c6">!</span>q.empty()) {
+</span></span><span style="display:flex;"><span>        TreeNode<span style="color:#ff79c6">*</span> curr <span style="color:#ff79c6">=</span> q.front();
+</span></span><span style="display:flex;"><span>        q.pop();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        res.push_back(curr<span style="color:#ff79c6">-&gt;</span>val);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (curr<span style="color:#ff79c6">-&gt;</span>left <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            q.push(curr<span style="color:#ff79c6">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (curr<span style="color:#ff79c6">-&gt;</span>right <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            q.push(curr<span style="color:#ff79c6">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> res;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>
+  <img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">
+
+</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2025/first_commit/" data-toggle="tooltip" data-placement="top" title="博客维护方法">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+<script src="https://giscus.app/client.js"
+        data-repo="Huang-0421/BlogComment"
+        data-repo-id="R_kgDOP14ucQ"
+        data-category="General"
+        data-category-id="DIC_kwDOP14ucc4Cv1Wt"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-input-position="top"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+<link href="https://xxx.xxx.com/dist/Artalk.css" rel="stylesheet" />
+<script src="https://xxx.xxx.com/dist/Artalk.js"></script>
+
+
+<div id="Comments"></div>
+
+<script>
+    Artalk.init({
+        el: '#Comments',
+        pageKey: 'http:\/\/localhost:1313\/post1\/',
+        pageTitle: '二叉树的遍历方法',
+        server: 'https:\/\/xxx.xxx.com',
+        site: 'xxx blog',
+    })
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:r1271231915@outlook.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat.JPG">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Huang-0421">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jerry Blog 2025
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

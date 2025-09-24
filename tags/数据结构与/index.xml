@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据结构与 on Jerry Blog</title>
+    <link>http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E/</link>
+    <description>Recent content in 数据结构与 on Jerry Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 24 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>二叉树的遍历方法</title>
+      <link>http://localhost:1313/2025/post1/</link>
+      <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2025/post1/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;二叉树的遍历方法分为&lt;strong&gt;深度优先遍历&lt;/strong&gt;与&lt;strong&gt;宽度优先遍历&lt;/strong&gt;，其中深度优先遍历又以根节点的访问时机分为&lt;strong&gt;前序遍历&lt;/strong&gt;、&lt;strong&gt;中序遍历&lt;/strong&gt;与&lt;strong&gt;后序遍历&lt;/strong&gt;，而宽度优先遍历（层序遍历）则是一层一层往下遍历。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

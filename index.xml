@@ -6,28 +6,42 @@
     <description>Recent content on Jerry Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 24 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://huang-0421.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>爱你贝贝</title>
-      <link>https://huang-0421.github.io/2025/9/23/demo/</link>
-      <pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/2025/9/23/demo/</guid>
-      <description>&lt;h2 id=&#34;您辛苦啦&#34;&gt;您辛苦啦&lt;/h2&gt;&#xA;&lt;p&gt;啦啦啦啦，贝贝辛苦啦&lt;/p&gt;</description>
+      <title>博客维护方法</title>
+      <link>https://huang-0421.github.io/AA/first_commit/</link>
+      <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/AA/first_commit/</guid>
+      <description>&lt;h2 id=&#34;博客维护方法&#34;&gt;博客维护方法&lt;/h2&gt;&#xA;&lt;h3 id=&#34;新推文&#34;&gt;新推文&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;每篇文章开头，使用yaml格式定义文章的基本信息，格式如下：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;layout&lt;/span&gt;:     post&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;title&lt;/span&gt;:      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;博客维护方法&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;subtitle&lt;/span&gt;:   &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;description&lt;/span&gt;: &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;记录了上传新文章和更新搜索索引的方法&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;date&lt;/span&gt;:    2025-09-24&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;author&lt;/span&gt;:     &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;黄瑞杰&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/img/postImg/1.jpg&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;URL&lt;/span&gt;: &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/allpost/first_commit&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;tags&lt;/span&gt;: [&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;数据结构&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;二叉树&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;算法&amp;#34;&lt;/span&gt;]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中，URL需要更改为不同的文件夹，比如second_commit等。因为每个文件夹中只会有一个index.html。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>二叉树的遍历方法</title>
+      <link>https://huang-0421.github.io/AA/post1/</link>
+      <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/AA/post1/</guid>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;二叉树的遍历方法分为&lt;strong&gt;深度优先遍历&lt;/strong&gt;与&lt;strong&gt;宽度优先遍历&lt;/strong&gt;，其中深度优先遍历又以根节点的访问时机分为&lt;strong&gt;前序遍历&lt;/strong&gt;、&lt;strong&gt;中序遍历&lt;/strong&gt;与&lt;strong&gt;后序遍历&lt;/strong&gt;，而宽度优先遍历（层序遍历）则是一层一层往下遍历。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>KMP算法理解</title>
+      <link>https://huang-0421.github.io/AA/post2/</link>
+      <pubDate>Thu, 24 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/AA/post2/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;KMP算法是我在学习《数据结构与算法》时遇到的一种解决字符串匹配问题的高效算法。面对这个问题，我最开始想到的是暴力算法，也就是一位一位的往下比对。&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
       <link>https://huang-0421.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://huang-0421.github.io/about/</guid>
-      <description></description>
+      <description>&lt;h2 id=&#34;关于我&#34;&gt;关于我&lt;/h2&gt;&#xA;&lt;p&gt;Hi，我是黄瑞杰，重庆大学 | 计算机科学与技术，大四在读。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;学的是CS，玩的也是CS（沙二敢死队，战绩可查）&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;技术栈有点杂，从算法到开发，啥都会一点，啥都只会一点 :(&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
       <link>https://huang-0421.github.io/notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://huang-0421.github.io/notes/</guid>
-      <description>&lt;h2 id=&#34;学习笔记&#34;&gt;学习笔记&lt;/h2&gt;</description>
+      <description>&lt;h2 id=&#34;敬请期待&#34;&gt;敬请期待&amp;hellip;&lt;/h2&gt;</description>
     </item>
     <item>
       <title></title>

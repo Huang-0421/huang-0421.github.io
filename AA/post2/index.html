@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jerry Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/postImg/1.jpg">
+    <meta property="twitter:image" content="/img/postImg/1.jpg" />
+    
+
+    
+    <meta name="title" content="KMP算法理解" />
+    <meta property="og:title" content="KMP算法理解" />
+    <meta property="twitter:title" content="KMP算法理解" />
+    
+
+    
+    <meta name="description" content="深入理解KMP字符串匹配算法的原理、前缀函数计算及高效应用示例。">
+    <meta property="og:description" content="深入理解KMP字符串匹配算法的原理、前缀函数计算及高效应用示例。" />
+    <meta property="twitter:description" content="深入理解KMP字符串匹配算法的原理、前缀函数计算及高效应用示例。" />
+    
+
+    <meta property="og:url" content="https://huang-0421.github.io/AA/post2/" />
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="黄瑞杰, huangruijie, Huangruijie, Jerry, 黄瑞杰的网络日志, 黄瑞杰的博客, Jerry Blog, 博客, 个人网站, 互联网, Web, ROS, 机器人, 本科成长,  计算机专业">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>KMP算法理解 | 黄瑞杰的博客 | Jerry Blog</title>
+
+    <link rel="canonical" href="/AA/post2/">
+
+    
+
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.min.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"><link rel="stylesheet" href="https://huang-0421.github.io/css/custom.css">
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jerry Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">文章</a>
+                    </li>
+                    
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">目录</a></li>
+                    
+                        <li><a href="/notes//">笔记</a></li>
+                    
+                        <li><a href="/about//">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/postImg/1.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>KMP算法理解</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                黄瑞杰
+                             
+                            on 
+                            2023.08.24
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="前言">前言</h2>
+<p>KMP算法是我在学习《数据结构与算法》时遇到的一种解决字符串匹配问题的高效算法。面对这个问题，我最开始想到的是暴力算法，也就是一位一位的往下比对。</p>
+<h2 id="bf算法">BF算法</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#6272a4">/*Brute-Force（BF算法）穷举思路*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">index_BF</span>(SString S,SString T)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span>(i<span style="color:#ff79c6">&lt;=</span>S.length<span style="color:#ff79c6">&amp;&amp;</span>j<span style="color:#ff79c6">&lt;=</span>T.length)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(S.ch[i]<span style="color:#ff79c6">==</span>T.ch[j])
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            i<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>            j<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            i<span style="color:#ff79c6">=</span>i<span style="color:#ff79c6">-</span>j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">2</span>;
+</span></span><span style="display:flex;"><span>            j<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span>(j<span style="color:#ff79c6">&gt;</span>T.length)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> i<span style="color:#ff79c6">-</span>T.length;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然而在这过程中指针下标的回溯次数会非常多，所以匹配速度很慢，最坏的情况下空间复杂度为O(m*n)。</p>
+<hr>
+<h2 id="kmp算法">KMP算法</h2>
+<p>
+  <figure>
+    <img src="/img/postImg/3.png" alt="img">
+    <center><figcaption>KMP算法</figcaption></center>
+  </figure>
+
+</p>
+<p>我们从这个例子来看，此时e和c出现不匹配，按照BF算法我们应该将子串后移一位重新进行比较，但其实是没有必要的，因为中间并没有相同的部分。我们观察到子串红色代表已匹配部分（下面称它为<strong>子子串</strong>），其中开头和结尾都有相同的<strong>ab</strong>，所以我们想能不能将子子串开头ab直接移动到其结尾ab处呢，这样就可以跳过中间不匹配的情况，同时保证主串的指针（下标）无需回溯，可以保持在e的位置继续往后比对。</p>
+<p>所以KMP算法的核心思路就是，当子串与主串出现不匹配时，我们就移动子串（注意真正移动的是下标，这里说子串移动是为了方便理解），直接跳过中间不可能相同的部分，然后继续往下比对。现在的问题是，我们如何知道子串需要移动多少个位置呢？</p>
+<blockquote>
+<p>开头和结尾相同的部分（也就是上图中的<strong>ab</strong>）我们称作子串的<strong>前后缀</strong>。</p></blockquote>
+<p>此时我们需要找到这个子子串的最大前后缀，然后就将前缀移动到后缀处。这时我们可能会有疑惑，为什么前缀可以直接移动到其后缀处，会不会出现移动到中间某个位置就匹配的情况？这是不可能的，因为如果出现了中间就匹配的情况，说明当前的前后缀不是最大前后缀。</p>
+<p>由上述原理，假设子串与主串在下标为<strong>i</strong>处出现了不匹配，那么我们就去查找前面长度为<strong>i-1</strong>的子子串的最大前后缀（设长度为<strong>x</strong>），然后从子串的x**+1**位置与主串的当前位置起，开始往后继续比较。翻译为代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">KMPIndex</span>(SString S,SString T)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> next[MAXSIZE],i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>,j<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>    GetNext(T,next);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span>(i<span style="color:#ff79c6">&lt;</span>S.length <span style="color:#ff79c6">&amp;&amp;</span> j<span style="color:#ff79c6">&lt;</span>T.length)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(j<span style="color:#ff79c6">==</span><span style="color:#bd93f9">0</span> <span style="color:#ff79c6">||</span> S.ch[i]<span style="color:#ff79c6">==</span>T.ch[j])
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            i<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>            j<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span> j<span style="color:#ff79c6">=</span>next[j];    <span style="color:#6272a4">//子串的下标直接跳转到next[j]处
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span>(j<span style="color:#ff79c6">&gt;</span>T.length)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> (i<span style="color:#ff79c6">-</span>T.length);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>其中，我们将<strong>以子串每一位为结尾的子子串的最大前后缀长度</strong>储存在一个名为<strong>next</strong>的数组当中。<strong>next</strong>数组，顾名思义它指示了下一步比对时下标所在的位置，而且<strong>next数组只由子串决定。</strong></p>
+<p>如何求得next数组呢，我们假设<strong>next[j] = t</strong>，表示由前<strong>j-1</strong>个字母组成的子子串的最大前后缀的长度为<strong>t-1</strong>。此时对于第<strong>j+1</strong>个字母来说，有两种情况：</p>
+<ol>
+<li>第j个字母与第t个字母相同，那么最大前后缀的长度+1，<strong>next[j+1] = t+1</strong></li>
+<li>第j个字母与第t个字母不同，所以前后缀就无法再变长，但是可能组成新的最大前后缀。如下图所示 ：
+  <img src="/img/postImg/4.png" alt="img">
+
+
+此时两个红色部分已经匹配了，说明2=4，如果红色部分之中还有更小的前后缀如1和2，那么1=2，所以1=4，如果1后的字母与蓝色部分相同，则可以形成新的最大前后缀。具体操作为反复令<strong>t = **n**ext[t]</strong>，直到t=0也就是第一个字母，或者找到下一个字母可以和蓝色部分匹配。</li>
+</ol>
+<p>翻译为代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">GetNext</span>(SString T,<span style="color:#8be9fd">int</span> next[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    next[<span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>; <span style="color:#8be9fd">int</span> j<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>,t<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span>(j <span style="color:#ff79c6">&lt;</span> T.length)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(t<span style="color:#ff79c6">==</span><span style="color:#bd93f9">0</span> <span style="color:#ff79c6">||</span> T.ch[j]<span style="color:#ff79c6">==</span>T.ch[t])
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            next[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">=</span>t<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>            j<span style="color:#ff79c6">++</span>;t<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span> t<span style="color:#ff79c6">=</span>next[t];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<p>总的来说KMP算法 原理不难理解，但是需要注意下标移动的位置，以及边界问题。上文中的图片来源于博主@哈顿之光《数据结构KMP算法配图详解》。</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/AA/post1/" data-toggle="tooltip" data-placement="top" title="二叉树的遍历方法">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+<script src="https://giscus.app/client.js"
+        data-repo="Huang-0421/BlogComment"
+        data-repo-id="R_kgDOP14ucQ"
+        data-category="General"
+        data-category-id="DIC_kwDOP14ucc4Cv1Wt"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-input-position="top"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" title="数据结构与算法">
+                            数据结构与算法
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:r1271231915@outlook.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat.JPG">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Huang-0421">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jerry Blog 2025
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
