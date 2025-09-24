@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jerry Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/postImg/1.jpg">
+    <meta property="twitter:image" content="/img/postImg/1.jpg" />
+    
+
+    
+    <meta name="title" content="最小生成树" />
+    <meta property="og:title" content="最小生成树" />
+    <meta property="twitter:title" content="最小生成树" />
+    
+
+    
+    <meta name="description" content="本文介绍最小生成树的基本概念，详细讲解其定义、构造方法及常见算法实现，如 Kruskal 算法和 Prim 算法，并结合具体示例说明最小生成树在图论问题、网络优化和实际应用中的重要作用，帮助读者深入理解最小生成树的原理、计算方法及应用价值。">
+    <meta property="og:description" content="本文介绍最小生成树的基本概念，详细讲解其定义、构造方法及常见算法实现，如 Kruskal 算法和 Prim 算法，并结合具体示例说明最小生成树在图论问题、网络优化和实际应用中的重要作用，帮助读者深入理解最小生成树的原理、计算方法及应用价值。" />
+    <meta property="twitter:description" content="本文介绍最小生成树的基本概念，详细讲解其定义、构造方法及常见算法实现，如 Kruskal 算法和 Prim 算法，并结合具体示例说明最小生成树在图论问题、网络优化和实际应用中的重要作用，帮助读者深入理解最小生成树的原理、计算方法及应用价值。" />
+    
+
+    <meta property="og:url" content="https://huang-0421.github.io/AA/post5/" />
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="黄瑞杰, huangruijie, Huangruijie, Jerry, 黄瑞杰的网络日志, 黄瑞杰的博客, Jerry Blog, 博客, 个人网站, 互联网, Web, ROS, 机器人, 本科成长,  计算机专业">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>最小生成树 | 黄瑞杰的博客 | Jerry Blog</title>
+
+    <link rel="canonical" href="/AA/post5/">
+
+    
+
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.min.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"><link rel="stylesheet" href="https://huang-0421.github.io/css/custom.css">
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jerry Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">全部文章</a>
+                    </li>
+                    
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">时间线</a></li>
+                    
+                        <li><a href="/notes//">学习笔记</a></li>
+                    
+                        <li><a href="/about//">关于作者</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/postImg/1.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" title="数据结构与算法">
+                            数据结构与算法
+                        </a>
+                        
+                    </div>
+                    <h1>最小生成树</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            2023.09.18
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="生成树">生成树</h1>
+<blockquote>
+<p>所有顶点由边连接到一起，但不存在回路的图</p></blockquote>
+<p>
+  <img src="/img/postImg/13.png" alt="img">
+
+
+特点：</p>
+<ul>
+<li>一个图可以有许多课不同的生成树。</li>
+<li>生成树的顶点个数与图的顶点个数相同。</li>
+<li>生成树是图的极小连通子图，去掉一条边则非联通。</li>
+<li>一个有n个顶点的连通图的生成树有n-1条边。</li>
+<li>在生成树中再加一条边必然形成回路。</li>
+<li>生成树中任意两个顶点间的路径是唯一的。</li>
+</ul>
+<h2 id="无向图的生成树">无向图的生成树</h2>
+<p>在遍历顶点的同时记录下经过的边，边所构成的集合+顶点集合就是连通图的生成树。</p>
+<p>
+  <img src="/img/postImg/14.png" alt="img">
+
+</p>
+<h1 id="最小生成树">最小生成树</h1>
+<blockquote>
+<p>给定一个无向网络，在该网的所有生成树中，使得各边权值之和最小的那棵生成树称为该网的<strong>最小生成树</strong>，也叫<strong>最小代价生成树</strong>。</p></blockquote>
+<h2 id="最小生成树的典型用途">最小生成树的典型用途</h2>
+<p>问题： 欲在n个城市间建立通信网，则n个城市应铺设n-1条线路，每条线路都会有对应的经济成本，而n个城市最多有n(n-1)/2条线路，那么，如何选择这n-1条线路，使总费用最少。</p>
+<p>转化为数学模型：</p>
+<table>
+  <thead>
+      <tr>
+          <th>顶点</th>
+          <th>表示城市，有n个</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>边</td>
+          <td>表示线路，有n-1条</td>
+      </tr>
+      <tr>
+          <td>边的权值</td>
+          <td>表示每条线路的经济代价</td>
+      </tr>
+      <tr>
+          <td>联通网</td>
+          <td>表示n个城市间通信网</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="构造最小生成树mimimum-spanning-tree">构造最小生成树（Mimimum Spanning Tree）</h2>
+<h3 id="mst性质">MST性质</h3>
+<blockquote>
+<p>构造最小生成树的算法很多，其中多数算法都利用了MST的性质</p></blockquote>
+<p>MST性质：</p>
+<p>设N=（V，E）是一个联通网，U是顶点集V的一个非空子集。<strong>若边（u，v）是一条具有最小权值的边</strong>，其中u∈U，v∈V-U，则<strong>必存在</strong>一棵包含边（u，v）的<strong>最小生成树</strong>。</p>
+<p>MST性质解释：</p>
+<p>在最小生成树构建过程中，图中n个顶点分属于两个集合：</p>
+<ul>
+<li>已落在生成树上的顶点集 U</li>
+<li>尚未落在生成树上的顶点集 V-U</li>
+</ul>
+<p>接下来则应在<strong>所有</strong>连通U中顶点和V-U中顶点的边中选取<strong>权值最小的边</strong>，这样才能保证新加入的边和顶点能构成生成树且边的权值最小。</p>
+<h3 id="prim算法">Prim算法</h3>
+<p>
+  <img src="/img/postImg/15.png" alt="img">
+
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> <span style="color:#8be9fd">int</span> MAXN <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1000</span>,INF <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x3f3f3f3f</span>;        <span style="color:#6272a4">//定义一个INF表示无穷大。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> g[MAXN][MAXN],dist[MAXN],n,m,res;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">//我们用g[][]数组存储这个图，dist[]储存到集合S的距离，res保存结果。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">bool</span> book[MAXN];<span style="color:#6272a4">//用book数组记录某个点是否加入到集合S中。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">prim</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    dist[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;        <span style="color:#6272a4">//把点1加入集合S，点1在集合S中，将它到集合的距离初始化为0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    book[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">true</span>;     <span style="color:#6272a4">//表示点1已经加入到了S集合中
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> ; i <span style="color:#ff79c6">&lt;=</span> n ;i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        dist[i] <span style="color:#ff79c6">=</span> min(dist[i],g[<span style="color:#bd93f9">1</span>][i]);        <span style="color:#6272a4">//用点1去更新dist[]
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> ; i <span style="color:#ff79c6">&lt;=</span> n ; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> temp <span style="color:#ff79c6">=</span> INF;                        <span style="color:#6272a4">//初始化距离
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> t <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;     <span style="color:#6272a4">//接下来去寻找离集合S最近的点加入到集合中，用t记录这个点的下标。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> ; j <span style="color:#ff79c6">&lt;=</span> n; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">!</span>book[j]<span style="color:#ff79c6">&amp;&amp;</span>dist[j]<span style="color:#ff79c6">&lt;</span>temp)
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">//如果这个点没有加入集合S，而且这个点到集合的距离小于temp就将下标赋给t
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            {
+</span></span><span style="display:flex;"><span>                temp <span style="color:#ff79c6">=</span> dist[j];<span style="color:#6272a4">//更新集合V到集合S的最小值
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                t <span style="color:#ff79c6">=</span> j;<span style="color:#6272a4">//把点赋给t
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(t<span style="color:#ff79c6">==-</span><span style="color:#bd93f9">1</span>){res <span style="color:#ff79c6">=</span> INF ; <span style="color:#ff79c6">return</span> ;}
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">//如果t==-1，意味着在集合V找不到边连向集合S，生成树构建失败
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        book[t] <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">true</span>;                       <span style="color:#6272a4">//如果找到了这个点，就把它加入集合S
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        res<span style="color:#ff79c6">+=</span>dist[t];                        <span style="color:#6272a4">//加上这个点到集合S的距离
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> ; j <span style="color:#ff79c6">&lt;=</span> n ; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>            dist[j] <span style="color:#ff79c6">=</span> min(dist[j],g[t][j]);        <span style="color:#6272a4">//用新加入的点更新dist[]
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="kruskal算法">Kruskal算法</h3>
+<p>
+  <img src="/img/postImg/16.png" alt="img">
+
+</p>
+<ul>
+<li>我们要选择权值最小的边，就需要给所有边的权值进行排序；</li>
+<li>要避免形成环，就需要设置辅助函数，利用并查集的思想做排除。</li>
+</ul>
+<p>定义边结构和图结构：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>    <span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">struct</span>{
+</span></span><span style="display:flex;"><span>        VerTexType vex[MVNum];      <span style="color:#6272a4">//顶点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        ArcType arcs[MVNum][MVNum];  <span style="color:#6272a4">//边
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> vexnum,arcnum;          <span style="color:#6272a4">//图当前点数和边数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }AMGRAGH; 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Edge</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> start;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> end;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> weight;
+</span></span><span style="display:flex;"><span>    };
+</span></span></code></pre></div><p>根据图录入边的信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>Edge<span style="color:#ff79c6">*</span> <span style="color:#50fa7b">IniEdge</span>(AMGRAGH<span style="color:#ff79c6">*</span> G){      <span style="color:#6272a4">//初始化边，同时舍弃边值为maxlnt
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> index <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>        Edge<span style="color:#ff79c6">*</span> edge <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Edge[G<span style="color:#ff79c6">-&gt;</span>arcnum];
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;i<span style="color:#ff79c6">&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vexnum;i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j<span style="color:#ff79c6">=</span>i<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>;j<span style="color:#ff79c6">&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vexnum;j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span>(G<span style="color:#ff79c6">-&gt;</span>arcs[i][j] <span style="color:#ff79c6">!=</span> Maxlnt)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    edge[index].start <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>                    edge[index].end <span style="color:#ff79c6">=</span> j;
+</span></span><span style="display:flex;"><span>                    edge[index].weight <span style="color:#ff79c6">=</span> G<span style="color:#ff79c6">-&gt;</span>arcs[i][j];
+</span></span><span style="display:flex;"><span>                    index<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> edge;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>利用冒泡排序，根据权值对边进行排序：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">SortEdge</span>(Edge<span style="color:#ff79c6">*</span> edge , AMGRAGH<span style="color:#ff79c6">*</span> G)      <span style="color:#6272a4">//冒泡排序
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; j <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">-</span> i; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span>(edge[j].weight <span style="color:#ff79c6">&gt;</span> edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>].weight)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    Edge temp <span style="color:#ff79c6">=</span> edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>];
+</span></span><span style="display:flex;"><span>                    edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> edge[j];
+</span></span><span style="display:flex;"><span>                    edge[j] <span style="color:#ff79c6">=</span> temp;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Kruskal函数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">kruskal</span>(AMGRAGH<span style="color:#ff79c6">*</span> G){
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">*</span> connected <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span>[G<span style="color:#ff79c6">-&gt;</span>vexnum];        <span style="color:#6272a4">//建立辅助数组，判断是否成环
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>vexnum; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            connected[i] <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        Edge<span style="color:#ff79c6">*</span> edge <span style="color:#ff79c6">=</span> IniEdge(G);
+</span></span><span style="display:flex;"><span>        SortEdge(edge,G);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> start <span style="color:#ff79c6">=</span> connected[edge[i].start];
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> end <span style="color:#ff79c6">=</span> connected[edge[i].end];
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span>(start <span style="color:#ff79c6">!=</span> end)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                cout<span style="color:#ff79c6">&lt;&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vex[edge[i].start]<span style="color:#ff79c6">&lt;&lt;</span><span style="color:#f1fa8c">&#34;-&gt;&#34;</span><span style="color:#ff79c6">&lt;&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vex[edge[i].end]<span style="color:#ff79c6">&lt;&lt;</span><span style="color:#f1fa8c">&#34;-&gt;&#34;</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; j <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>vexnum; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span>(connected[j] <span style="color:#ff79c6">==</span> end)
+</span></span><span style="display:flex;"><span>                    {
+</span></span><span style="display:flex;"><span>                        connected[j] <span style="color:#ff79c6">=</span> start;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span>[] connected;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span>[] edge;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>完整代码封装成Kruskal类，代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Kruskal</span>{
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">struct</span>{
+</span></span><span style="display:flex;"><span>        VerTexType vex[MVNum];      <span style="color:#6272a4">//顶点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        ArcType arcs[MVNum][MVNum];  <span style="color:#6272a4">//边
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> vexnum,arcnum;          <span style="color:#6272a4">//图当前点数和边数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }AMGRAGH; 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Edge</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> start;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> end;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> weight;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    Edge x;
+</span></span><span style="display:flex;"><span>    Kruskal(){};
+</span></span><span style="display:flex;"><span>    Edge<span style="color:#ff79c6">*</span> <span style="color:#50fa7b">IniEdge</span>(AMGRAGH<span style="color:#ff79c6">*</span> G){      <span style="color:#6272a4">//初始化边，同时舍弃边值为maxlnt
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> index <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>        Edge<span style="color:#ff79c6">*</span> edge <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Edge[G<span style="color:#ff79c6">-&gt;</span>arcnum];
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;i<span style="color:#ff79c6">&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vexnum;i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j<span style="color:#ff79c6">=</span>i<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>;j<span style="color:#ff79c6">&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vexnum;j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span>(G<span style="color:#ff79c6">-&gt;</span>arcs[i][j] <span style="color:#ff79c6">!=</span> Maxlnt)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    edge[index].start <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>                    edge[index].end <span style="color:#ff79c6">=</span> j;
+</span></span><span style="display:flex;"><span>                    edge[index].weight <span style="color:#ff79c6">=</span> G<span style="color:#ff79c6">-&gt;</span>arcs[i][j];
+</span></span><span style="display:flex;"><span>                    index<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> edge;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">SortEdge</span>(Edge<span style="color:#ff79c6">*</span> edge , AMGRAGH<span style="color:#ff79c6">*</span> G)      <span style="color:#6272a4">//冒泡排序
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; j <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">-</span> i; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span>(edge[j].weight <span style="color:#ff79c6">&gt;</span> edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>].weight)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    Edge temp <span style="color:#ff79c6">=</span> edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>];
+</span></span><span style="display:flex;"><span>                    edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> edge[j];
+</span></span><span style="display:flex;"><span>                    edge[j] <span style="color:#ff79c6">=</span> temp;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">kruskal</span>(AMGRAGH<span style="color:#ff79c6">*</span> G){
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">*</span> connected <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span>[G<span style="color:#ff79c6">-&gt;</span>vexnum];        <span style="color:#6272a4">//建立辅助数组，判断是否成环
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>vexnum; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            connected[i] <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        Edge<span style="color:#ff79c6">*</span> edge <span style="color:#ff79c6">=</span> IniEdge(G);
+</span></span><span style="display:flex;"><span>        SortEdge(edge,G);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> start <span style="color:#ff79c6">=</span> connected[edge[i].start];
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> end <span style="color:#ff79c6">=</span> connected[edge[i].end];
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span>(start <span style="color:#ff79c6">!=</span> end)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                cout<span style="color:#ff79c6">&lt;&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vex[edge[i].start]<span style="color:#ff79c6">&lt;&lt;</span><span style="color:#f1fa8c">&#34;-&gt;&#34;</span><span style="color:#ff79c6">&lt;&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vex[edge[i].end]<span style="color:#ff79c6">&lt;&lt;</span><span style="color:#f1fa8c">&#34;-&gt;&#34;</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; j <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>vexnum; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span>(connected[j] <span style="color:#ff79c6">==</span> end)
+</span></span><span style="display:flex;"><span>                    {
+</span></span><span style="display:flex;"><span>                        connected[j] <span style="color:#ff79c6">=</span> start;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span>[] connected;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span>[] edge;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/AA/post4/" data-toggle="tooltip" data-placement="top" title="有限状态自动机">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/AA/first_commit/" data-toggle="tooltip" data-placement="top" title="Jerry Blog维护方法">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+<script src="https://giscus.app/client.js"
+        data-repo="Huang-0421/BlogComment"
+        data-repo-id="R_kgDOP14ucQ"
+        data-category="General"
+        data-category-id="DIC_kwDOP14ucc4Cv1Wt"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-input-position="top"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" title="数据结构与算法">
+                            数据结构与算法
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:r1271231915@outlook.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat.JPG">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Huang-0421">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jerry Blog 2025
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

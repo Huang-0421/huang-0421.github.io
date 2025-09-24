@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="Jerry Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="/img/postImg/1.jpg">
+    <meta property="twitter:image" content="/img/postImg/1.jpg" />
+    
+
+    
+    <meta name="title" content="哈夫曼树的建立" />
+    <meta property="og:title" content="哈夫曼树的建立" />
+    <meta property="twitter:title" content="哈夫曼树的建立" />
+    
+
+    
+    <meta name="description" content="本文介绍了哈夫曼树的基本概念，详细讲解了如何使用哈夫曼算法构造哈夫曼树，包括节点合并、编码生成等步骤，并通过具体示例说明其在数据压缩和信息编码中的应用，帮助读者深入理解哈夫曼树的原理、实现方法以及实际使用价值。">
+    <meta property="og:description" content="本文介绍了哈夫曼树的基本概念，详细讲解了如何使用哈夫曼算法构造哈夫曼树，包括节点合并、编码生成等步骤，并通过具体示例说明其在数据压缩和信息编码中的应用，帮助读者深入理解哈夫曼树的原理、实现方法以及实际使用价值。" />
+    <meta property="twitter:description" content="本文介绍了哈夫曼树的基本概念，详细讲解了如何使用哈夫曼算法构造哈夫曼树，包括节点合并、编码生成等步骤，并通过具体示例说明其在数据压缩和信息编码中的应用，帮助读者深入理解哈夫曼树的原理、实现方法以及实际使用价值。" />
+    
+
+    <meta property="og:url" content="https://huang-0421.github.io/AA/post3/" />
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="黄瑞杰, huangruijie, Huangruijie, Jerry, 黄瑞杰的网络日志, 黄瑞杰的博客, Jerry Blog, 博客, 个人网站, 互联网, Web, ROS, 机器人, 本科成长,  计算机专业">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>哈夫曼树的建立 | 黄瑞杰的博客 | Jerry Blog</title>
+
+    <link rel="canonical" href="/AA/post3/">
+
+    
+
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.min.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"><link rel="stylesheet" href="https://huang-0421.github.io/css/custom.css">
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Jerry Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">全部文章</a>
+                    </li>
+                    
+                        
+                    
+                    
+		    
+                        <li><a href="/archive//">时间线</a></li>
+                    
+                        <li><a href="/notes//">学习笔记</a></li>
+                    
+                        <li><a href="/about//">关于作者</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/postImg/1.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" title="数据结构与算法">
+                            数据结构与算法
+                        </a>
+                        
+                    </div>
+                    <h1>哈夫曼树的建立</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            2023.09.04
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="前言">前言</h2>
+<p>哈夫曼树也叫<strong>最优二叉树</strong>，它可以用于数据压缩，实现编码和解码的过程。下文将描述哈夫曼树的构建方法以及其编码思想的应用。</p>
+<h2 id="基础知识">基础知识</h2>
+<ol>
+<li>
+<p><strong>路径</strong>：两个节点之间的线。</p>
+</li>
+<li>
+<p><strong>某个节点的路径长度</strong>：该节点与根节点之间的路径数量。</p>
+</li>
+<li>
+<p>树的路径长度</p>
+<p>：从根节点到每个节点的路径长度之和。</p>
+<p>
+  <img src="/img/postImg/5.png" alt="img">
+
+</p>
+</li>
+</ol>
+<p>上图树的路径长度为<strong>0+1+1+2+2+3+3+4+4=20</strong></p>
+<p>​    4. <strong>节点的带权路径长度</strong>：从该节点到树根之间的路径长度与节点上权的乘积。</p>
+<p>​    5.<strong>树的带权路径长度</strong>：树中所有<strong>叶子节点</strong>的带权路径长度之和。、</p>
+<h2 id="哈夫曼树的定义">哈夫曼树的定义</h2>
+<p>哈夫曼树：<strong>带权路径最短的二叉树。</strong></p>
+<h2 id="哈夫曼树的构建">哈夫曼树的构建</h2>
+<p>要让二叉树的带权路径最短，我们要让权值大的节点靠近根节点，权值小的节点作叶子结点。</p>
+<h3 id="哈夫曼算法构造哈夫曼树的算法">哈夫曼算法（构造哈夫曼树的算法）</h3>
+<ul>
+<li>
+<p>构造森林全是根：根据n个给定权值{W1,W2,&hellip;..,Wn}构成n棵二叉树的森林F={T1,T2,&hellip;,Tn}其中Ti只有一个带权为Wi的根节点。
+  <img src="/img/postImg/6.png" alt="img">
+
+</p>
+</li>
+<li>
+<p>选用两小造新树：在F中选取两棵根节点的权值最小的树作为左右子树，构造一棵新的二叉树，且设置新的二叉树的根节点的权值为其左右子树上根节点的权值之和。
+  <img src="/img/postImg/7.png" alt="img">
+
+</p>
+</li>
+<li>
+<p>删除两小添新树：在F中删除这两棵树，同时将上一步得到的新二叉树加入森林中。</p>
+</li>
+<li>
+<p>重复（2）、（3），直到森林中只有一棵树为止，这棵树即为哈夫曼树。</p>
+</li>
+</ul>
+<h3 id="总结">总结</h3>
+<ul>
+<li>哈夫曼算法中，初始有n棵二叉树，经过<strong>n-1次合并</strong>最终形成哈夫曼树。</li>
+<li>经过n-1次合并产生<strong>n-1个新结点</strong>，且这n-1个新结点都是具有两个孩子的分支节点。</li>
+<li>可见：哈夫曼树中共有<strong>n+n-1=2n-1</strong>个结点，且起所有分支节点的度均不唯一</li>
+</ul>
+<blockquote>
+<p><strong>度</strong>的定义是指该节点的子节点的个数。</p></blockquote>
+<h3 id="哈夫曼树算法的实现">哈夫曼树算法的实现</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">CreatHuffmanTree</span>(HuffmanTree HT,<span style="color:#8be9fd">int</span> n)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span>(n<span style="color:#ff79c6">&lt;=</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> m <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span><span style="color:#ff79c6">*</span>n<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;              <span style="color:#6272a4">//数组共2n-1个元素
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    HT <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HTNode[m<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>];       <span style="color:#6272a4">//0号单元未用，HT[m]表示根节点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>;i<span style="color:#ff79c6">&lt;</span>m;i<span style="color:#ff79c6">++</span>)        <span style="color:#6272a4">//将2n-1个元素的lch、rch、parent置为零
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    {
+</span></span><span style="display:flex;"><span>        HT[i].lch<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>        HT[i].rch<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>        HT[i].parent<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>;i<span style="color:#ff79c6">&lt;=</span>n;i<span style="color:#ff79c6">++</span>)       <span style="color:#6272a4">//输入前n个元素的weight值
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        cin<span style="color:#ff79c6">&gt;&gt;</span>HT[i].weight;
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/*****初始化结束，下面开始建立哈夫曼******/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span>n<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>;i<span style="color:#ff79c6">&lt;=</span>m;i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> s1,s2;
+</span></span><span style="display:flex;"><span>        Select(HT,i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>,s1,s2);   <span style="color:#6272a4">//调用Select函数选出权值最小的两个根
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        HT[s1].parent<span style="color:#ff79c6">=</span>i;HT[s2].parent<span style="color:#ff79c6">=</span>i;    <span style="color:#6272a4">//改变parent，删除这两个结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        HT[i].lch<span style="color:#ff79c6">=</span>s1;HT[i].rch<span style="color:#ff79c6">=</span>s2;
+</span></span><span style="display:flex;"><span>        HT[i].weight<span style="color:#ff79c6">=</span>HT[s1].weight<span style="color:#ff79c6">+</span>HT[s2].weight;   <span style="color:#6272a4">//选用两小造新树
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Select函数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">Select</span>(HuffmanTree HT,<span style="color:#8be9fd">int</span> n,<span style="color:#8be9fd">int</span><span style="color:#ff79c6">&amp;</span> s1,<span style="color:#8be9fd">int</span><span style="color:#ff79c6">&amp;</span> s2)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>;i<span style="color:#ff79c6">&lt;=</span>n;i<span style="color:#ff79c6">++</span>)       <span style="color:#6272a4">//找到第一个没有用双亲的根节点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(HT[i].parent<span style="color:#ff79c6">==</span><span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            s1 <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>;i<span style="color:#ff79c6">&lt;=</span>n;i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(HT[i].parent<span style="color:#ff79c6">==</span><span style="color:#bd93f9">0</span><span style="color:#ff79c6">&amp;&amp;</span>HT[i].weight<span style="color:#ff79c6">&lt;</span>HT[s1].weight)     <span style="color:#6272a4">//找第一个权值最小的根节点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        {
+</span></span><span style="display:flex;"><span>            s1 <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>;i<span style="color:#ff79c6">&lt;=</span>n;i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(HT[i].parent<span style="color:#ff79c6">==</span><span style="color:#bd93f9">0</span><span style="color:#ff79c6">&amp;&amp;</span>i<span style="color:#ff79c6">!=</span>s1)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            s2 <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>;i<span style="color:#ff79c6">&lt;=</span>n;i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(HT[i].parent<span style="color:#ff79c6">==</span><span style="color:#bd93f9">0</span><span style="color:#ff79c6">&amp;&amp;</span>i<span style="color:#ff79c6">!=</span>s1<span style="color:#ff79c6">&amp;&amp;</span>HT[i].weight<span style="color:#ff79c6">&lt;</span>HT[s2].weight)  <span style="color:#6272a4">//找第二个权值最小且与s1不同的根节点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        {
+</span></span><span style="display:flex;"><span>            s1 <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="哈夫曼编码">哈夫曼编码</h2>
+<blockquote>
+<p>在远程通讯中，要将待传字符转换为二进制的字符串</p></blockquote>
+<p>
+  <img src="/img/postImg/8.png" alt="img">
+
+</p>
+<p>我们根据字符的出现频率，决定字符的编码长度。比如<strong>出现次数多的字符采用尽可能短的编码</strong>。生成的这种长度不等的编码串可以一定程度上节约空间。这就是哈夫曼编码思想。</p>
+<h3 id="哈夫曼编码设计">哈夫曼编码设计</h3>
+<p>关键：要设计长度不等的编码，则必须使任一字符的编码都不是另一字符编码的前缀（称为前缀编码）。</p>
+<p>方法：</p>
+<ol>
+<li>统计字符集中每个字符在电文中出现的平均频率（概率越大，要求编码越短）。</li>
+<li>利用哈夫曼树的特点：权越大的叶子离根越近；将每个字符的概率值作为权值，构造哈夫曼树。则概率越大的结点路径越短。</li>
+<li>在哈夫曼树的每个分支上标0或1：结点的左分支标0，有右分支标1。</li>
+<li>把从根到每个叶子的路径上的标号连接起来，作为该叶子代表的字符的编码。</li>
+</ol>
+<p>
+  <img src="/img/postImg/9.png" alt="img">
+
+</p>
+<p>保证是<strong>前缀编码</strong>：由于所有字符都是作为叶子结点，说明没有一个字符是另一个字符的祖先，所以每个叶子结点的编码就不可能是其他叶子结点的编码前缀。</p>
+<p>保证字符<strong>编码总长最短</strong>：因为哈夫曼树的带权路径长度最短，所以字符编码长度最短。</p>
+<p>结论：<em>哈夫曼编码是最优前缀码！</em></p>
+<h3 id="哈夫曼编码的算法实现">哈夫曼编码的算法实现</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">CreatHuffmanCode</span>(HuffmanTree HT,HuffmanCode <span style="color:#ff79c6">&amp;</span>HC,<span style="color:#8be9fd">int</span> n)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">//从叶子到根逆向求每个字符的哈夫曼编码，存储在编码表HC中
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>{
+</span></span><span style="display:flex;"><span>    HC <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>[n<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>];    <span style="color:#6272a4">//分配n个字符编码的头指针矢量
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span> cd<span style="color:#ff79c6">=</span><span style="color:#ff79c6">new</span> <span style="color:#8be9fd">char</span>[n];   <span style="color:#6272a4">//分配临时存放编码的动态数组空间
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    cd[n<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;\0&#39;</span>;           
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>;i<span style="color:#ff79c6">&lt;=</span>n;i<span style="color:#ff79c6">++</span>)   <span style="color:#6272a4">//逐个字符求哈夫曼编码
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> start<span style="color:#ff79c6">=</span>n<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> c<span style="color:#ff79c6">=</span>i;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> f<span style="color:#ff79c6">=</span>HT[i].parent;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span>(f<span style="color:#ff79c6">!=</span><span style="color:#bd93f9">0</span>)         <span style="color:#6272a4">//从叶子结点开始向上回溯，直到根节点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">--</span>start;        <span style="color:#6272a4">//回溯一次start向前指一个位置
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">if</span>(HT[f].lch<span style="color:#ff79c6">==</span>c)    <span style="color:#6272a4">//结点c是f的左孩子，生成0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                cd[start]<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">else</span> cd[start]<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;1&#39;</span>; <span style="color:#6272a4">//结点c是f的右孩子，生成代码1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            c<span style="color:#ff79c6">=</span>f;
+</span></span><span style="display:flex;"><span>            f<span style="color:#ff79c6">=</span>HT[f].parent;     <span style="color:#6272a4">//继续向上回溯
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
+</span></span><span style="display:flex;"><span>        HC[i]<span style="color:#ff79c6">=</span><span style="color:#ff79c6">new</span> <span style="color:#8be9fd">char</span>[n<span style="color:#ff79c6">-</span>start];    <span style="color:#6272a4">//为第i个字符串编码分配空间
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        strcpy(HC[i],<span style="color:#ff79c6">&amp;</span>cd[start]);   <span style="color:#6272a4">//将求得的编码从临时空间cd复制到HC的当前行中
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">delete</span> []cd;        <span style="color:#6272a4">//释放临时空间
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span></code></pre></div>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/AA/post1/" data-toggle="tooltip" data-placement="top" title="二叉树的遍历方法">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/AA/post4/" data-toggle="tooltip" data-placement="top" title="有限状态自动机">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+<script src="https://giscus.app/client.js"
+        data-repo="Huang-0421/BlogComment"
+        data-repo-id="R_kgDOP14ucQ"
+        data-category="General"
+        data-category-id="DIC_kwDOP14ucc4Cv1Wt"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-input-position="top"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" title="数据结构与算法">
+                            数据结构与算法
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="mailto:r1271231915@outlook.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    <li>
+                        <a target="_blank" href="/img/wechat.JPG">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Huang-0421">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; Jerry Blog 2025
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow" title="' + t + '">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
