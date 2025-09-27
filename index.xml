@@ -52,31 +52,31 @@
     </item>
     <item>
       <title></title>
-      <link>https://huang-0421.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/about/</guid>
-      <description>&lt;h2 id=&#34;关于我&#34;&gt;关于我&lt;/h2&gt;&#xA;&lt;p&gt;Hi，我是黄瑞杰，重庆大学 | 计算机科学与技术，大四在读。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;学的是CS，玩的也是CS（沙二敢死队，战绩可查）&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;技术栈有点杂，从算法到开发，啥都会一点，啥都只会一点 :(&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://huang-0421.github.io/notes/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/notes/</guid>
-      <description>&lt;h2 id=&#34;敬请期待&#34;&gt;敬请期待&amp;hellip;&lt;/h2&gt;</description>
-    </item>
-    <item>
-      <title></title>
       <link>https://huang-0421.github.io/search/placeholder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://huang-0421.github.io/search/placeholder/</guid>
       <description></description>
     </item>
     <item>
-      <title>Posts Archive</title>
+      <title>Jerry Blog</title>
+      <link>https://huang-0421.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/about/</guid>
+      <description>&lt;h2 id=&#34;关于我&#34;&gt;关于我&lt;/h2&gt;&#xA;&lt;p&gt;Hi，我是黄瑞杰，重庆大学 | 计算机科学与技术，大四在读。&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;学的是CS，玩的也是CS（沙二敢死队，战绩可查）&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;技术栈有点杂，从算法到开发，啥都会一点，啥都只会一点 :(&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Jerry Blog</title>
       <link>https://huang-0421.github.io/archive/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://huang-0421.github.io/archive/</guid>
       <description></description>
+    </item>
+    <item>
+      <title>Jerry Blog</title>
+      <link>https://huang-0421.github.io/notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/notes/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;数据结构与算法&#34;&gt;&lt;a href=&#34;https://huang-0421.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/&#34;&gt;数据结构与算法&lt;/a&gt;&lt;/h4&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>
