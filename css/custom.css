@@ -36,6 +36,7 @@ pre {
     0 4px 6px rgba(0,0,0,0.3),     /* 近的阴影 */
     0 10px 20px rgba(0,0,0,0.25),  /* 中层阴影 */
     0 20px 40px rgba(0,0,0,0.2);   /* 远层阴影 */
+  border: none !important;
 }
 /* 悬停时浮起 */
 pre:hover {
@@ -77,10 +78,4 @@ pre::before {
 .copy-button:hover {
   opacity: 1;
   background: #666;
-}
-
-hr {
-  border: none;
-  border-top: 2px dashed #090707; /* 虚线 */
-  margin: 2em 0;
 }
