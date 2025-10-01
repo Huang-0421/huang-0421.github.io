@@ -272,37 +272,37 @@
   <img src="/img/postImg/15.png" alt="img">
 
 </p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> <span style="color:#8be9fd">int</span> MAXN <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1000</span>,INF <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x3f3f3f3f</span>;        <span style="color:#6272a4">//定义一个INF表示无穷大。
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">int</span> g[MAXN][MAXN],dist[MAXN],n,m,res;
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">//我们用g[][]数组存储这个图，dist[]储存到集合S的距离，res保存结果。
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">bool</span> book[MAXN];<span style="color:#6272a4">//用book数组记录某个点是否加入到集合S中。
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">prim</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MAXN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>,INF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f3f3f</span>;        <span style="color:#75715e">//定义一个INF表示无穷大。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> g[MAXN][MAXN],dist[MAXN],n,m,res;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//我们用g[][]数组存储这个图，dist[]储存到集合S的距离，res保存结果。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">bool</span> book[MAXN];<span style="color:#75715e">//用book数组记录某个点是否加入到集合S中。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">prim</span>()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    dist[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;        <span style="color:#6272a4">//把点1加入集合S，点1在集合S中，将它到集合的距离初始化为0
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    book[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">true</span>;     <span style="color:#6272a4">//表示点1已经加入到了S集合中
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> ; i <span style="color:#ff79c6">&lt;=</span> n ;i<span style="color:#ff79c6">++</span>)
-</span></span><span style="display:flex;"><span>        dist[i] <span style="color:#ff79c6">=</span> min(dist[i],g[<span style="color:#bd93f9">1</span>][i]);        <span style="color:#6272a4">//用点1去更新dist[]
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> ; i <span style="color:#ff79c6">&lt;=</span> n ; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>    dist[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;        <span style="color:#75715e">//把点1加入集合S，点1在集合S中，将它到集合的距离初始化为0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    book[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> true;     <span style="color:#75715e">//表示点1已经加入到了S集合中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> ; i <span style="color:#f92672">&lt;=</span> n ;i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        dist[i] <span style="color:#f92672">=</span> min(dist[i],g[<span style="color:#ae81ff">1</span>][i]);        <span style="color:#75715e">//用点1去更新dist[]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> ; i <span style="color:#f92672">&lt;=</span> n ; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> temp <span style="color:#ff79c6">=</span> INF;                        <span style="color:#6272a4">//初始化距离
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> t <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;     <span style="color:#6272a4">//接下来去寻找离集合S最近的点加入到集合中，用t记录这个点的下标。
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> ; j <span style="color:#ff79c6">&lt;=</span> n; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> temp <span style="color:#f92672">=</span> INF;                        <span style="color:#75715e">//初始化距离
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> t <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;     <span style="color:#75715e">//接下来去寻找离集合S最近的点加入到集合中，用t记录这个点的下标。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> ; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">!</span>book[j]<span style="color:#ff79c6">&amp;&amp;</span>dist[j]<span style="color:#ff79c6">&lt;</span>temp)
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">//如果这个点没有加入集合S，而且这个点到集合的距离小于temp就将下标赋给t
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            {
-</span></span><span style="display:flex;"><span>                temp <span style="color:#ff79c6">=</span> dist[j];<span style="color:#6272a4">//更新集合V到集合S的最小值
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                t <span style="color:#ff79c6">=</span> j;<span style="color:#6272a4">//把点赋给t
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>book[j]<span style="color:#f92672">&amp;&amp;</span>dist[j]<span style="color:#f92672">&lt;</span>temp)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//如果这个点没有加入集合S，而且这个点到集合的距离小于temp就将下标赋给t
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            {
+</span></span><span style="display:flex;"><span>                temp <span style="color:#f92672">=</span> dist[j];<span style="color:#75715e">//更新集合V到集合S的最小值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                t <span style="color:#f92672">=</span> j;<span style="color:#75715e">//把点赋给t
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            }
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(t<span style="color:#ff79c6">==-</span><span style="color:#bd93f9">1</span>){res <span style="color:#ff79c6">=</span> INF ; <span style="color:#ff79c6">return</span> ;}
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">//如果t==-1，意味着在集合V找不到边连向集合S，生成树构建失败
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        book[t] <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">true</span>;                       <span style="color:#6272a4">//如果找到了这个点，就把它加入集合S
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        res<span style="color:#ff79c6">+=</span>dist[t];                        <span style="color:#6272a4">//加上这个点到集合S的距离
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> ; j <span style="color:#ff79c6">&lt;=</span> n ; j<span style="color:#ff79c6">++</span>)
-</span></span><span style="display:flex;"><span>            dist[j] <span style="color:#ff79c6">=</span> min(dist[j],g[t][j]);        <span style="color:#6272a4">//用新加入的点更新dist[]
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(t<span style="color:#f92672">==-</span><span style="color:#ae81ff">1</span>){res <span style="color:#f92672">=</span> INF ; <span style="color:#66d9ef">return</span> ;}
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//如果t==-1，意味着在集合V找不到边连向集合S，生成树构建失败
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        book[t] <span style="color:#f92672">=</span> true;                       <span style="color:#75715e">//如果找到了这个点，就把它加入集合S
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        res<span style="color:#f92672">+=</span>dist[t];                        <span style="color:#75715e">//加上这个点到集合S的距离
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> ; j <span style="color:#f92672">&lt;=</span> n ; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>            dist[j] <span style="color:#f92672">=</span> min(dist[j],g[t][j]);        <span style="color:#75715e">//用新加入的点更新dist[]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="kruskal算法">Kruskal算法</h3>
 <p>
@@ -314,153 +314,153 @@
 <li>要避免形成环，就需要设置辅助函数，利用并查集的思想做排除。</li>
 </ul>
 <p>定义边结构和图结构：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>    <span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">struct</span>{
-</span></span><span style="display:flex;"><span>        VerTexType vex[MVNum];      <span style="color:#6272a4">//顶点
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        ArcType arcs[MVNum][MVNum];  <span style="color:#6272a4">//边
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> vexnum,arcnum;          <span style="color:#6272a4">//图当前点数和边数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }AMGRAGH; 
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Edge</span>{
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> start;
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> end;
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> weight;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>    <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>        VerTexType vex[MVNum];      <span style="color:#75715e">//顶点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ArcType arcs[MVNum][MVNum];  <span style="color:#75715e">//边
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> vexnum,arcnum;          <span style="color:#75715e">//图当前点数和边数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }AMGRAGH; 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Edge</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> start;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> end;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> weight;
 </span></span><span style="display:flex;"><span>    };
 </span></span></code></pre></div><p>根据图录入边的信息：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>Edge<span style="color:#ff79c6">*</span> <span style="color:#50fa7b">IniEdge</span>(AMGRAGH<span style="color:#ff79c6">*</span> G){      <span style="color:#6272a4">//初始化边，同时舍弃边值为maxlnt
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> index <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
-</span></span><span style="display:flex;"><span>        Edge<span style="color:#ff79c6">*</span> edge <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Edge[G<span style="color:#ff79c6">-&gt;</span>arcnum];
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;i<span style="color:#ff79c6">&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vexnum;i<span style="color:#ff79c6">++</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>Edge<span style="color:#f92672">*</span> <span style="color:#a6e22e">IniEdge</span>(AMGRAGH<span style="color:#f92672">*</span> G){      <span style="color:#75715e">//初始化边，同时舍弃边值为maxlnt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        Edge<span style="color:#f92672">*</span> edge <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Edge[G<span style="color:#f92672">-&gt;</span>arcnum];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>G<span style="color:#f92672">-&gt;</span>vexnum;i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j<span style="color:#ff79c6">=</span>i<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>;j<span style="color:#ff79c6">&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vexnum;j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">&lt;</span>G<span style="color:#f92672">-&gt;</span>vexnum;j<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span>(G<span style="color:#ff79c6">-&gt;</span>arcs[i][j] <span style="color:#ff79c6">!=</span> Maxlnt)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(G<span style="color:#f92672">-&gt;</span>arcs[i][j] <span style="color:#f92672">!=</span> Maxlnt)
 </span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    edge[index].start <span style="color:#ff79c6">=</span> i;
-</span></span><span style="display:flex;"><span>                    edge[index].end <span style="color:#ff79c6">=</span> j;
-</span></span><span style="display:flex;"><span>                    edge[index].weight <span style="color:#ff79c6">=</span> G<span style="color:#ff79c6">-&gt;</span>arcs[i][j];
-</span></span><span style="display:flex;"><span>                    index<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>                    edge[index].start <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>                    edge[index].end <span style="color:#f92672">=</span> j;
+</span></span><span style="display:flex;"><span>                    edge[index].weight <span style="color:#f92672">=</span> G<span style="color:#f92672">-&gt;</span>arcs[i][j];
+</span></span><span style="display:flex;"><span>                    index<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> edge;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> edge;
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><p>利用冒泡排序，根据权值对边进行排序：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">SortEdge</span>(Edge<span style="color:#ff79c6">*</span> edge , AMGRAGH<span style="color:#ff79c6">*</span> G)      <span style="color:#6272a4">//冒泡排序
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">++</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SortEdge</span>(Edge<span style="color:#f92672">*</span> edge , AMGRAGH<span style="color:#f92672">*</span> G)      <span style="color:#75715e">//冒泡排序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>arcnum <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; j <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">-</span> i; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>arcnum <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> i; j<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span>(edge[j].weight <span style="color:#ff79c6">&gt;</span> edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>].weight)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(edge[j].weight <span style="color:#f92672">&gt;</span> edge[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>].weight)
 </span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    Edge temp <span style="color:#ff79c6">=</span> edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>];
-</span></span><span style="display:flex;"><span>                    edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> edge[j];
-</span></span><span style="display:flex;"><span>                    edge[j] <span style="color:#ff79c6">=</span> temp;
+</span></span><span style="display:flex;"><span>                    Edge temp <span style="color:#f92672">=</span> edge[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>                    edge[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> edge[j];
+</span></span><span style="display:flex;"><span>                    edge[j] <span style="color:#f92672">=</span> temp;
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><p>Kruskal函数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">kruskal</span>(AMGRAGH<span style="color:#ff79c6">*</span> G){
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">*</span> connected <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span>[G<span style="color:#ff79c6">-&gt;</span>vexnum];        <span style="color:#6272a4">//建立辅助数组，判断是否成环
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>vexnum; i<span style="color:#ff79c6">++</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">kruskal</span>(AMGRAGH<span style="color:#f92672">*</span> G){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> connected <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[G<span style="color:#f92672">-&gt;</span>vexnum];        <span style="color:#75715e">//建立辅助数组，判断是否成环
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>vexnum; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            connected[i] <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>            connected[i] <span style="color:#f92672">=</span> i;
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        Edge<span style="color:#ff79c6">*</span> edge <span style="color:#ff79c6">=</span> IniEdge(G);
+</span></span><span style="display:flex;"><span>        Edge<span style="color:#f92672">*</span> edge <span style="color:#f92672">=</span> IniEdge(G);
 </span></span><span style="display:flex;"><span>        SortEdge(edge,G);
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>arcnum; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> start <span style="color:#ff79c6">=</span> connected[edge[i].start];
-</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> end <span style="color:#ff79c6">=</span> connected[edge[i].end];
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span>(start <span style="color:#ff79c6">!=</span> end)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> start <span style="color:#f92672">=</span> connected[edge[i].start];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> end <span style="color:#f92672">=</span> connected[edge[i].end];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(start <span style="color:#f92672">!=</span> end)
 </span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                cout<span style="color:#ff79c6">&lt;&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vex[edge[i].start]<span style="color:#ff79c6">&lt;&lt;</span><span style="color:#f1fa8c">&#34;-&gt;&#34;</span><span style="color:#ff79c6">&lt;&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vex[edge[i].end]<span style="color:#ff79c6">&lt;&lt;</span><span style="color:#f1fa8c">&#34;-&gt;&#34;</span>;
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; j <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>vexnum; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>                cout<span style="color:#f92672">&lt;&lt;</span>G<span style="color:#f92672">-&gt;</span>vex[edge[i].start]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;-&gt;&#34;</span><span style="color:#f92672">&lt;&lt;</span>G<span style="color:#f92672">-&gt;</span>vex[edge[i].end]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;-&gt;&#34;</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>vexnum; j<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span>(connected[j] <span style="color:#ff79c6">==</span> end)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span>(connected[j] <span style="color:#f92672">==</span> end)
 </span></span><span style="display:flex;"><span>                    {
-</span></span><span style="display:flex;"><span>                        connected[j] <span style="color:#ff79c6">=</span> start;
+</span></span><span style="display:flex;"><span>                        connected[j] <span style="color:#f92672">=</span> start;
 </span></span><span style="display:flex;"><span>                    }
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span>[] connected;
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span>[] edge;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">delete</span>[] connected;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">delete</span>[] edge;
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><p>完整代码封装成Kruskal类，代码如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Kruskal</span>{
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">typedef</span> <span style="color:#ff79c6">struct</span>{
-</span></span><span style="display:flex;"><span>        VerTexType vex[MVNum];      <span style="color:#6272a4">//顶点
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        ArcType arcs[MVNum][MVNum];  <span style="color:#6272a4">//边
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> vexnum,arcnum;          <span style="color:#6272a4">//图当前点数和边数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }AMGRAGH; 
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Edge</span>{
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> start;
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> end;
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> weight;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Kruskal</span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>        VerTexType vex[MVNum];      <span style="color:#75715e">//顶点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ArcType arcs[MVNum][MVNum];  <span style="color:#75715e">//边
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> vexnum,arcnum;          <span style="color:#75715e">//图当前点数和边数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }AMGRAGH; 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Edge</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> start;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> end;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> weight;
 </span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>    Edge x;
 </span></span><span style="display:flex;"><span>    Kruskal(){};
-</span></span><span style="display:flex;"><span>    Edge<span style="color:#ff79c6">*</span> <span style="color:#50fa7b">IniEdge</span>(AMGRAGH<span style="color:#ff79c6">*</span> G){      <span style="color:#6272a4">//初始化边，同时舍弃边值为maxlnt
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#8be9fd">int</span> index <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
-</span></span><span style="display:flex;"><span>        Edge<span style="color:#ff79c6">*</span> edge <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Edge[G<span style="color:#ff79c6">-&gt;</span>arcnum];
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;i<span style="color:#ff79c6">&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vexnum;i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>    Edge<span style="color:#f92672">*</span> <span style="color:#a6e22e">IniEdge</span>(AMGRAGH<span style="color:#f92672">*</span> G){      <span style="color:#75715e">//初始化边，同时舍弃边值为maxlnt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        Edge<span style="color:#f92672">*</span> edge <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Edge[G<span style="color:#f92672">-&gt;</span>arcnum];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>G<span style="color:#f92672">-&gt;</span>vexnum;i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j<span style="color:#ff79c6">=</span>i<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>;j<span style="color:#ff79c6">&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vexnum;j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">&lt;</span>G<span style="color:#f92672">-&gt;</span>vexnum;j<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span>(G<span style="color:#ff79c6">-&gt;</span>arcs[i][j] <span style="color:#ff79c6">!=</span> Maxlnt)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(G<span style="color:#f92672">-&gt;</span>arcs[i][j] <span style="color:#f92672">!=</span> Maxlnt)
 </span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    edge[index].start <span style="color:#ff79c6">=</span> i;
-</span></span><span style="display:flex;"><span>                    edge[index].end <span style="color:#ff79c6">=</span> j;
-</span></span><span style="display:flex;"><span>                    edge[index].weight <span style="color:#ff79c6">=</span> G<span style="color:#ff79c6">-&gt;</span>arcs[i][j];
-</span></span><span style="display:flex;"><span>                    index<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>                    edge[index].start <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>                    edge[index].end <span style="color:#f92672">=</span> j;
+</span></span><span style="display:flex;"><span>                    edge[index].weight <span style="color:#f92672">=</span> G<span style="color:#f92672">-&gt;</span>arcs[i][j];
+</span></span><span style="display:flex;"><span>                    index<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> edge;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> edge;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">SortEdge</span>(Edge<span style="color:#ff79c6">*</span> edge , AMGRAGH<span style="color:#ff79c6">*</span> G)      <span style="color:#6272a4">//冒泡排序
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SortEdge</span>(Edge<span style="color:#f92672">*</span> edge , AMGRAGH<span style="color:#f92672">*</span> G)      <span style="color:#75715e">//冒泡排序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>arcnum <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; j <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">-</span> i; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>arcnum <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> i; j<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span>(edge[j].weight <span style="color:#ff79c6">&gt;</span> edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>].weight)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(edge[j].weight <span style="color:#f92672">&gt;</span> edge[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>].weight)
 </span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    Edge temp <span style="color:#ff79c6">=</span> edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>];
-</span></span><span style="display:flex;"><span>                    edge[j<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> edge[j];
-</span></span><span style="display:flex;"><span>                    edge[j] <span style="color:#ff79c6">=</span> temp;
+</span></span><span style="display:flex;"><span>                    Edge temp <span style="color:#f92672">=</span> edge[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>                    edge[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> edge[j];
+</span></span><span style="display:flex;"><span>                    edge[j] <span style="color:#f92672">=</span> temp;
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">kruskal</span>(AMGRAGH<span style="color:#ff79c6">*</span> G){
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">*</span> connected <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span>[G<span style="color:#ff79c6">-&gt;</span>vexnum];        <span style="color:#6272a4">//建立辅助数组，判断是否成环
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>vexnum; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">kruskal</span>(AMGRAGH<span style="color:#f92672">*</span> G){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> connected <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[G<span style="color:#f92672">-&gt;</span>vexnum];        <span style="color:#75715e">//建立辅助数组，判断是否成环
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>vexnum; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            connected[i] <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>            connected[i] <span style="color:#f92672">=</span> i;
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        Edge<span style="color:#ff79c6">*</span> edge <span style="color:#ff79c6">=</span> IniEdge(G);
+</span></span><span style="display:flex;"><span>        Edge<span style="color:#f92672">*</span> edge <span style="color:#f92672">=</span> IniEdge(G);
 </span></span><span style="display:flex;"><span>        SortEdge(edge,G);
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>arcnum; i<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>arcnum; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> start <span style="color:#ff79c6">=</span> connected[edge[i].start];
-</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> end <span style="color:#ff79c6">=</span> connected[edge[i].end];
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span>(start <span style="color:#ff79c6">!=</span> end)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> start <span style="color:#f92672">=</span> connected[edge[i].start];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> end <span style="color:#f92672">=</span> connected[edge[i].end];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(start <span style="color:#f92672">!=</span> end)
 </span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                cout<span style="color:#ff79c6">&lt;&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vex[edge[i].start]<span style="color:#ff79c6">&lt;&lt;</span><span style="color:#f1fa8c">&#34;-&gt;&#34;</span><span style="color:#ff79c6">&lt;&lt;</span>G<span style="color:#ff79c6">-&gt;</span>vex[edge[i].end]<span style="color:#ff79c6">&lt;&lt;</span><span style="color:#f1fa8c">&#34;-&gt;&#34;</span>;
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; j <span style="color:#ff79c6">&lt;</span> G<span style="color:#ff79c6">-&gt;</span>vexnum; j<span style="color:#ff79c6">++</span>)
+</span></span><span style="display:flex;"><span>                cout<span style="color:#f92672">&lt;&lt;</span>G<span style="color:#f92672">-&gt;</span>vex[edge[i].start]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;-&gt;&#34;</span><span style="color:#f92672">&lt;&lt;</span>G<span style="color:#f92672">-&gt;</span>vex[edge[i].end]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;-&gt;&#34;</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> G<span style="color:#f92672">-&gt;</span>vexnum; j<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>                {
-</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span>(connected[j] <span style="color:#ff79c6">==</span> end)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span>(connected[j] <span style="color:#f92672">==</span> end)
 </span></span><span style="display:flex;"><span>                    {
-</span></span><span style="display:flex;"><span>                        connected[j] <span style="color:#ff79c6">=</span> start;
+</span></span><span style="display:flex;"><span>                        connected[j] <span style="color:#f92672">=</span> start;
 </span></span><span style="display:flex;"><span>                    }
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span>[] connected;
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">delete</span>[] edge;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">delete</span>[] connected;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">delete</span>[] edge;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div>
@@ -536,6 +536,12 @@
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B" title="全国大学生智能汽车竞赛">
+                            全国大学生智能汽车竞赛
+                        </a>
                         
                         
                         
@@ -729,6 +735,30 @@
 
 
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("pre > code").forEach((codeBlock) => {
+    const button = document.createElement("button");
+    button.className = "copy-button";
+    button.type = "button";
+    button.innerText = "复制";
+
+    button.addEventListener("click", () => {
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        button.innerText = "复制成功!";
+        setTimeout(() => {
+          button.innerText = "Copy";
+        }, 2000);
+      });
+    });
+
+    const pre = codeBlock.parentNode;
+    pre.style.position = "relative";
+    pre.appendChild(button);
+  });
+});
+</script>
 
 </body>
 </html>

@@ -328,6 +328,12 @@
             
             
                
+                    <a href="/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B" title="全国大学生智能汽车竞赛">
+                        全国大学生智能汽车竞赛
+                    </a>
+               
+            
+               
                     <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" title="数据结构与算法">
                         数据结构与算法
                     </a>
@@ -521,6 +527,30 @@
 
 
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("pre > code").forEach((codeBlock) => {
+    const button = document.createElement("button");
+    button.className = "copy-button";
+    button.type = "button";
+    button.innerText = "复制";
+
+    button.addEventListener("click", () => {
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        button.innerText = "复制成功!";
+        setTimeout(() => {
+          button.innerText = "Copy";
+        }, 2000);
+      });
+    });
+
+    const pre = codeBlock.parentNode;
+    pre.style.position = "relative";
+    pre.appendChild(button);
+  });
+});
+</script>
 
 </body>
 </html>

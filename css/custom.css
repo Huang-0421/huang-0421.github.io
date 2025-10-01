@@ -7,3 +7,80 @@
   --animate-duration: 1.5s;     /* 动画时长 */
   --animate-delay: 0.2s;        /* 延迟时间 */
 }
+p {
+  margin-top: 20px;   /* 段落顶部间距 */
+  margin-bottom: 20px;/* 段落底部间距 */
+  line-height: 30px;
+}
+
+mark {
+  background-color: #ffeb3b; /* 你喜欢的颜色 */
+  color: black;             /* 高亮时的文字颜色 */
+  padding: 0 2px;           /* 加点内边距好看 */
+  border-radius: 3px;       /* 圆角效果 */
+}
+
+/* 代码块外框（Mac 风格） */
+pre {
+  position: relative;
+  background: #1e1e1e;     /* 背景色，类似 VSCode 黑色 */
+  color: #dcdcdc;          /* 默认字体颜色 */
+  padding: 2.5em 1em 1em 1em;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 1.2em 0;
+  /* box-shadow: 0 10px 15px rgba(0,0,0,0.3); */
+  font-family: "Fira Code", "JetBrains Mono", "Cascadia Code", monospace;
+    /* 阴影：多层叠加制造深度 */
+  box-shadow: 
+    0 4px 6px rgba(0,0,0,0.3),     /* 近的阴影 */
+    0 10px 20px rgba(0,0,0,0.25),  /* 中层阴影 */
+    0 20px 40px rgba(0,0,0,0.2);   /* 远层阴影 */
+}
+/* 悬停时浮起 */
+pre:hover {
+  transform: translateY(-4px) scale(1.01);  /* 微微上移 + 放大一点 */
+  box-shadow: 
+    0 8px 12px rgba(0,0,0,0.35),
+    0 20px 25px rgba(0,0,0,0.3),
+    0 30px 50px rgba(0,0,0,0.25); /* 阴影更深更远 */
+}
+/* 上方的 Mac 三个圆点 */
+pre::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 11px;
+  height: 11px;
+  width: 11px;
+  border-radius: 50%;
+  background: #ff5f56; /* 红 */
+  box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f; /* 黄 & 绿 */
+}
+
+/* 复制按钮样式 */
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  padding: 3px 8px;
+  font-size: 12px;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.copy-button:hover {
+  opacity: 1;
+  background: #666;
+}
+
+hr {
+  border: none;
+  border-top: 2px dashed #090707; /* 虚线 */
+  margin: 2em 0;
+}

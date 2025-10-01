@@ -225,87 +225,87 @@
   <img src="/img/postImg/12.png" alt="img">
 
 </p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>string state <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;start&#34;</span>;    <span style="color:#6272a4">//初始state为“start”
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>unordered_map<span style="color:#ff79c6">&lt;</span>string,vector<span style="color:#ff79c6">&lt;</span>string<span style="color:#ff79c6">&gt;&gt;</span> table <span style="color:#ff79c6">=</span>{
-</span></span><span style="display:flex;"><span>{<span style="color:#f1fa8c">&#34;start&#34;</span>,{<span style="color:#f1fa8c">&#34;start&#34;</span>,<span style="color:#f1fa8c">&#34;signed&#34;</span>,<span style="color:#f1fa8c">&#34;in_number&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>}},
-</span></span><span style="display:flex;"><span>{<span style="color:#f1fa8c">&#34;signed&#34;</span>,{<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;in_number&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>}},
-</span></span><span style="display:flex;"><span>{<span style="color:#f1fa8c">&#34;in_number&#34;</span>,{<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;in_number&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>}},
-</span></span><span style="display:flex;"><span>{<span style="color:#f1fa8c">&#34;end&#34;</span>,{<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>}}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>string state <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;start&#34;</span>;    <span style="color:#75715e">//初始state为“start”
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>unordered_map<span style="color:#f92672">&lt;</span>string,vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;&gt;</span> table <span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>{<span style="color:#e6db74">&#34;start&#34;</span>,{<span style="color:#e6db74">&#34;start&#34;</span>,<span style="color:#e6db74">&#34;signed&#34;</span>,<span style="color:#e6db74">&#34;in_number&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>}},
+</span></span><span style="display:flex;"><span>{<span style="color:#e6db74">&#34;signed&#34;</span>,{<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;in_number&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>}},
+</span></span><span style="display:flex;"><span>{<span style="color:#e6db74">&#34;in_number&#34;</span>,{<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;in_number&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>}},
+</span></span><span style="display:flex;"><span>{<span style="color:#e6db74">&#34;end&#34;</span>,{<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>}}
 </span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">//使用unordered_map更高效地查找元素
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//使用unordered_map更高效地查找元素
 </span></span></span></code></pre></div><p>然后，我们需要设计一个函数来判断当前字符应该对应哪一种状态</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">get_col</span>(<span style="color:#8be9fd">char</span> c){
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(isspace(c))
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(c<span style="color:#ff79c6">==</span><span style="color:#f1fa8c">&#39;+&#39;</span> <span style="color:#ff79c6">||</span> c<span style="color:#ff79c6">==</span><span style="color:#f1fa8c">&#39;-&#39;</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">1</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(isdigit(c))
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">2</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">3</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">get_col</span>(<span style="color:#66d9ef">char</span> c){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(isspace(c))
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(c<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">||</span> c<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;-&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(isdigit(c))
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><p>可见，这样的判断仅对于单个字符，就避免了繁杂的判断条件。</p>
 <p>下一步，我们需要在“in_number”状态下将当前字符计入总数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> sign <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;       <span style="color:#6272a4">//记录正负
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">long</span> <span style="color:#8be9fd">long</span> ans <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;  <span style="color:#6272a4">//记录总数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">get</span>(<span style="color:#8be9fd">char</span> c)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> sign <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;       <span style="color:#75715e">//记录正负
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  <span style="color:#75715e">//记录总数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">get</span>(<span style="color:#66d9ef">char</span> c)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        state <span style="color:#ff79c6">=</span> table[state][get_col(c)];
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(state<span style="color:#ff79c6">==</span><span style="color:#f1fa8c">&#34;in_number&#34;</span>)          <span style="color:#6272a4">//在“in_number”状态就需要记录总数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        {
-</span></span><span style="display:flex;"><span>            ans <span style="color:#ff79c6">=</span> ans<span style="color:#ff79c6">*</span><span style="color:#bd93f9">10</span><span style="color:#ff79c6">+</span>c<span style="color:#ff79c6">-</span><span style="color:#f1fa8c">&#39;0&#39;</span>;
-</span></span><span style="display:flex;"><span>            ans <span style="color:#ff79c6">=</span> sign <span style="color:#ff79c6">==</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">?</span>min(ans,(<span style="color:#8be9fd">long</span> <span style="color:#8be9fd">long</span>)INT_MAX)<span style="color:#ff79c6">:</span>min(ans,<span style="color:#ff79c6">-</span>(<span style="color:#8be9fd">long</span> <span style="color:#8be9fd">long</span>)INT_MIN);    <span style="color:#6272a4">//此处计算的是ans的绝对值
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(state <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;signed&#34;</span>)      <span style="color:#6272a4">//判断正负
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            sign <span style="color:#ff79c6">=</span> c <span style="color:#ff79c6">==</span><span style="color:#f1fa8c">&#39;+&#39;</span><span style="color:#ff79c6">?</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">:-</span><span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>        state <span style="color:#f92672">=</span> table[state][get_col(c)];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(state<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;in_number&#34;</span>)          <span style="color:#75715e">//在“in_number”状态就需要记录总数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        {
+</span></span><span style="display:flex;"><span>            ans <span style="color:#f92672">=</span> ans<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span><span style="color:#f92672">+</span>c<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>            ans <span style="color:#f92672">=</span> sign <span style="color:#f92672">==</span><span style="color:#ae81ff">1</span><span style="color:#f92672">?</span>min(ans,(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>)INT_MAX)<span style="color:#f92672">:</span>min(ans,<span style="color:#f92672">-</span>(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>)INT_MIN);    <span style="color:#75715e">//此处计算的是ans的绝对值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(state <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;signed&#34;</span>)      <span style="color:#75715e">//判断正负
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            sign <span style="color:#f92672">=</span> c <span style="color:#f92672">==</span><span style="color:#e6db74">&#39;+&#39;</span><span style="color:#f92672">?</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:-</span><span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><p>我们将上述操作封装在一个名为Automation的类中，此后我们只需要对字符串中的字符进行依次遍历，最后再返回Automation中的ans即可，当然不要忘记考虑正负。</p>
 <p>以下是完整代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Automation</span>{
-</span></span><span style="display:flex;"><span>    string state <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;start&#34;</span>;<span style="color:#6272a4">//初始state为“start”
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    unordered_map<span style="color:#ff79c6">&lt;</span>string,vector<span style="color:#ff79c6">&lt;</span>string<span style="color:#ff79c6">&gt;&gt;</span> table <span style="color:#ff79c6">=</span>{
-</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;start&#34;</span>,{<span style="color:#f1fa8c">&#34;start&#34;</span>,<span style="color:#f1fa8c">&#34;signed&#34;</span>,<span style="color:#f1fa8c">&#34;in_number&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>}},
-</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;signed&#34;</span>,{<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;in_number&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>}},
-</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;in_number&#34;</span>,{<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;in_number&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>}},
-</span></span><span style="display:flex;"><span>        {<span style="color:#f1fa8c">&#34;end&#34;</span>,{<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>,<span style="color:#f1fa8c">&#34;end&#34;</span>}}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Automation</span>{
+</span></span><span style="display:flex;"><span>    string state <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;start&#34;</span>;<span style="color:#75715e">//初始state为“start”
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    unordered_map<span style="color:#f92672">&lt;</span>string,vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;&gt;</span> table <span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;start&#34;</span>,{<span style="color:#e6db74">&#34;start&#34;</span>,<span style="color:#e6db74">&#34;signed&#34;</span>,<span style="color:#e6db74">&#34;in_number&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>}},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;signed&#34;</span>,{<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;in_number&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>}},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;in_number&#34;</span>,{<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;in_number&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>}},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;end&#34;</span>,{<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>,<span style="color:#e6db74">&#34;end&#34;</span>}}
 </span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>     <span style="color:#6272a4">//使用unordered_map更高效地查找元素
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">get_col</span>(<span style="color:#8be9fd">char</span> c){
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(isspace(c))
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(c<span style="color:#ff79c6">==</span><span style="color:#f1fa8c">&#39;+&#39;</span> <span style="color:#ff79c6">||</span> c<span style="color:#ff79c6">==</span><span style="color:#f1fa8c">&#39;-&#39;</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">1</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(isdigit(c))
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">2</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">3</span>;
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e">//使用unordered_map更高效地查找元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">get_col</span>(<span style="color:#66d9ef">char</span> c){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(isspace(c))
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(c<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">||</span> c<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;-&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(isdigit(c))
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3</span>;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> sign <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;       <span style="color:#6272a4">//记录正负
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd">long</span> <span style="color:#8be9fd">long</span> ans <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;  <span style="color:#6272a4">//记录总数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">get</span>(<span style="color:#8be9fd">char</span> c)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> sign <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;       <span style="color:#75715e">//记录正负
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  <span style="color:#75715e">//记录总数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">get</span>(<span style="color:#66d9ef">char</span> c)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        state <span style="color:#ff79c6">=</span> table[state][get_col(c)];
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span>(state<span style="color:#ff79c6">==</span><span style="color:#f1fa8c">&#34;in_number&#34;</span>)          <span style="color:#6272a4">//在“in_number”状态就需要记录总数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        {
-</span></span><span style="display:flex;"><span>            ans <span style="color:#ff79c6">=</span> ans<span style="color:#ff79c6">*</span><span style="color:#bd93f9">10</span><span style="color:#ff79c6">+</span>c<span style="color:#ff79c6">-</span><span style="color:#f1fa8c">&#39;0&#39;</span>;
-</span></span><span style="display:flex;"><span>            ans <span style="color:#ff79c6">=</span> sign <span style="color:#ff79c6">==</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">?</span>min(ans,(<span style="color:#8be9fd">long</span> <span style="color:#8be9fd">long</span>)INT_MAX)<span style="color:#ff79c6">:</span>min(ans,<span style="color:#ff79c6">-</span>(<span style="color:#8be9fd">long</span> <span style="color:#8be9fd">long</span>)INT_MIN);    <span style="color:#6272a4">//此处计算的是ans的绝对值
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(state <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;signed&#34;</span>)      <span style="color:#6272a4">//判断正负
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            sign <span style="color:#ff79c6">=</span> c <span style="color:#ff79c6">==</span><span style="color:#f1fa8c">&#39;+&#39;</span><span style="color:#ff79c6">?</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">:-</span><span style="color:#bd93f9">1</span>;
+</span></span><span style="display:flex;"><span>        state <span style="color:#f92672">=</span> table[state][get_col(c)];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(state<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;in_number&#34;</span>)          <span style="color:#75715e">//在“in_number”状态就需要记录总数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        {
+</span></span><span style="display:flex;"><span>            ans <span style="color:#f92672">=</span> ans<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span><span style="color:#f92672">+</span>c<span style="color:#f92672">-</span><span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>            ans <span style="color:#f92672">=</span> sign <span style="color:#f92672">==</span><span style="color:#ae81ff">1</span><span style="color:#f92672">?</span>min(ans,(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>)INT_MAX)<span style="color:#f92672">:</span>min(ans,<span style="color:#f92672">-</span>(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>)INT_MIN);    <span style="color:#75715e">//此处计算的是ans的绝对值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(state <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;signed&#34;</span>)      <span style="color:#75715e">//判断正负
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            sign <span style="color:#f92672">=</span> c <span style="color:#f92672">==</span><span style="color:#e6db74">&#39;+&#39;</span><span style="color:#f92672">?</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:-</span><span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">solution</span>{
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">public</span><span style="color:#ff79c6">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> strToint(string str){
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">solution</span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> strToint(string str){
 </span></span><span style="display:flex;"><span>        Automation automation;
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span>(<span style="color:#ff79c6">auto</span> <span style="color:#8be9fd;font-style:italic">x</span>:str)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> x:str)
 </span></span><span style="display:flex;"><span>        {
 </span></span><span style="display:flex;"><span>            automation.get(x);
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> automation.sign <span style="color:#ff79c6">*</span> automation.ans;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> automation.sign <span style="color:#f92672">*</span> automation.ans;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div>
@@ -381,6 +381,12 @@
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B" title="全国大学生智能汽车竞赛">
+                            全国大学生智能汽车竞赛
+                        </a>
                         
                         
                         
@@ -574,6 +580,30 @@
 
 
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("pre > code").forEach((codeBlock) => {
+    const button = document.createElement("button");
+    button.className = "copy-button";
+    button.type = "button";
+    button.innerText = "复制";
+
+    button.addEventListener("click", () => {
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        button.innerText = "复制成功!";
+        setTimeout(() => {
+          button.innerText = "Copy";
+        }, 2000);
+      });
+    });
+
+    const pre = codeBlock.parentNode;
+    pre.style.position = "relative";
+    pre.appendChild(button);
+  });
+});
+</script>
 
 </body>
 </html>

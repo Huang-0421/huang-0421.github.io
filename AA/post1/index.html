@@ -210,144 +210,144 @@
 <h3 id="前序遍历">前序遍历</h3>
 <p>前序遍历有<strong>递归</strong>和<strong>迭代</strong>两种实现方式</p>
 <p>递归实现：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">TreeNode</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">int</span> val;
-</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> left;
-</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> right;
-</span></span><span style="display:flex;"><span>    TreeNode(<span style="color:#8be9fd">int</span> x) <span style="color:#ff79c6">:</span> val(x), left(<span style="color:#8be9fd;font-style:italic">NULL</span>), right(<span style="color:#8be9fd;font-style:italic">NULL</span>) {}   <span style="color:#6272a4">//构造函数初始化
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>};
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">TreeNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val;
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> left;
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> right;
+</span></span><span style="display:flex;"><span>    TreeNode(<span style="color:#66d9ef">int</span> x) <span style="color:#f92672">:</span> val(x), left(NULL), right(NULL) {}   <span style="color:#75715e">//构造函数初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">preorderTraversal</span>(TreeNode<span style="color:#ff79c6">*</span> root, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> result) {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">==</span> <span style="color:#8be9fd;font-style:italic">NULL</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">preorderTraversal</span>(TreeNode<span style="color:#f92672">*</span> root, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> result) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (root <span style="color:#f92672">==</span> NULL) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    result.push_back(root<span style="color:#ff79c6">-&gt;</span>val); <span style="color:#6272a4">// 将当前节点的值加入结果列表
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    preorderTraversal(root<span style="color:#ff79c6">-&gt;</span>left, result); <span style="color:#6272a4">// 递归访问左子树
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    preorderTraversal(root<span style="color:#ff79c6">-&gt;</span>right, result); <span style="color:#6272a4">// 递归访问右子树
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span><span style="display:flex;"><span>    result.push_back(root<span style="color:#f92672">-&gt;</span>val); <span style="color:#75715e">// 将当前节点的值加入结果列表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    preorderTraversal(root<span style="color:#f92672">-&gt;</span>left, result); <span style="color:#75715e">// 递归访问左子树
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    preorderTraversal(root<span style="color:#f92672">-&gt;</span>right, result); <span style="color:#75715e">// 递归访问右子树
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> preorderTraversal(TreeNode<span style="color:#ff79c6">*</span> root) {
-</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> result;
-</span></span><span style="display:flex;"><span>    preorderTraversal(root, result);      <span style="color:#6272a4">// 调用重载函数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> preorderTraversal(TreeNode<span style="color:#f92672">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> result;
+</span></span><span style="display:flex;"><span>    preorderTraversal(root, result);      <span style="color:#75715e">// 调用重载函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> result;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>迭代实现：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">preorderTraversal</span>(TreeNode<span style="color:#ff79c6">*</span> root) {
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">nullptr</span>) {
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">return</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">preorderTraversal</span>(TreeNode<span style="color:#f92672">*</span> root) {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (root <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>std<span style="color:#ff79c6">::</span>stack<span style="color:#ff79c6">&lt;</span>TreeNode<span style="color:#ff79c6">*&gt;</span> stack;
+</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>stack<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">*&gt;</span> stack;
 </span></span><span style="display:flex;"><span>stack.push(root);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">while</span> (<span style="color:#ff79c6">!</span>stack.empty()) {
-</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> current <span style="color:#ff79c6">=</span> stack.top();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>stack.empty()) {
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> current <span style="color:#f92672">=</span> stack.top();
 </span></span><span style="display:flex;"><span>    stack.pop();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#ff79c6">::</span>cout <span style="color:#ff79c6">&lt;&lt;</span> current<span style="color:#ff79c6">-&gt;</span>value <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34; &#34;</span>; <span style="color:#6272a4">// 访问节点
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (current<span style="color:#ff79c6">-&gt;</span>right <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
-</span></span><span style="display:flex;"><span>        stack.push(current<span style="color:#ff79c6">-&gt;</span>right);
-</span></span><span style="display:flex;"><span>    }<span style="color:#6272a4">//右孩子先进后出
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (current<span style="color:#ff79c6">-&gt;</span>left <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
-</span></span><span style="display:flex;"><span>        stack.push(current<span style="color:#ff79c6">-&gt;</span>left);
-</span></span><span style="display:flex;"><span>    }<span style="color:#6272a4">//左孩子后进先出
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> current<span style="color:#f92672">-&gt;</span>value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span>; <span style="color:#75715e">// 访问节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (current<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        stack.push(current<span style="color:#f92672">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>    }<span style="color:#75715e">//右孩子先进后出
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (current<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        stack.push(current<span style="color:#f92672">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>    }<span style="color:#75715e">//左孩子后进先出
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="中序遍历">中序遍历</h3>
 <p>中序遍历的递归实现与前序遍历的区别仅仅是：<strong>中序遍历在递归访问左子树和递归访问右子树之间将节点加入结果列表。</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">preorderTraversal</span>(TreeNode<span style="color:#ff79c6">*</span> root, vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;&amp;</span> result) {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">==</span> <span style="color:#8be9fd;font-style:italic">NULL</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">preorderTraversal</span>(TreeNode<span style="color:#f92672">*</span> root, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> result) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (root <span style="color:#f92672">==</span> NULL) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    preorderTraversal(root<span style="color:#ff79c6">-&gt;</span>left, result); <span style="color:#6272a4">// 递归访问左子树
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    result.push_back(root<span style="color:#ff79c6">-&gt;</span>val); <span style="color:#6272a4">// 将当前节点的值加入结果列表
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    preorderTraversal(root<span style="color:#ff79c6">-&gt;</span>right, result); <span style="color:#6272a4">// 递归访问右子树
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
+</span></span><span style="display:flex;"><span>    preorderTraversal(root<span style="color:#f92672">-&gt;</span>left, result); <span style="color:#75715e">// 递归访问左子树
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    result.push_back(root<span style="color:#f92672">-&gt;</span>val); <span style="color:#75715e">// 将当前节点的值加入结果列表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    preorderTraversal(root<span style="color:#f92672">-&gt;</span>right, result); <span style="color:#75715e">// 递归访问右子树
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> preorderTraversal(TreeNode<span style="color:#ff79c6">*</span> root) {
-</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> result;
-</span></span><span style="display:flex;"><span>    preorderTraversal(root, result);      <span style="color:#6272a4">// 调用重载函数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> preorderTraversal(TreeNode<span style="color:#f92672">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> result;
+</span></span><span style="display:flex;"><span>    preorderTraversal(root, result);      <span style="color:#75715e">// 调用重载函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> result;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><blockquote>
 <p>同理，<strong>后序遍历</strong>则是<strong>在递归访问左子树和右子树之后将节点加入结果列表</strong>，代码不在赘述。</p></blockquote>
 <p>中序遍历的迭代实现也是通过栈来实现：</p>
 <p>​    我们使用了一个栈来保存经过的节点。我们从根节点开始，将当前节点以及其左子树中的节点都入栈，直到遇到叶子节点。然后，弹出栈顶节点，将其值加入结果列表，并将当前节点指向其右子树。然后，重复上述步骤，直到栈为空且当前节点为空。最终，返回得到的结果列表，即为中序遍历的结果。代码如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> inorderTraversal(TreeNode<span style="color:#ff79c6">*</span> root) {
-</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> res;
-</span></span><span style="display:flex;"><span>    stack<span style="color:#ff79c6">&lt;</span>TreeNode<span style="color:#ff79c6">*&gt;</span> stk;
-</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> curr <span style="color:#ff79c6">=</span> root;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> inorderTraversal(TreeNode<span style="color:#f92672">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> res;
+</span></span><span style="display:flex;"><span>    stack<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">*&gt;</span> stk;
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> curr <span style="color:#f92672">=</span> root;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span> (curr <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span> <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>stk.empty()) {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (curr <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (curr <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>stk.empty()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (curr <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
 </span></span><span style="display:flex;"><span>            stk.push(curr);
-</span></span><span style="display:flex;"><span>            curr <span style="color:#ff79c6">=</span> curr<span style="color:#ff79c6">-&gt;</span>left;
+</span></span><span style="display:flex;"><span>            curr <span style="color:#f92672">=</span> curr<span style="color:#f92672">-&gt;</span>left;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        curr <span style="color:#ff79c6">=</span> stk.top();
+</span></span><span style="display:flex;"><span>        curr <span style="color:#f92672">=</span> stk.top();
 </span></span><span style="display:flex;"><span>        stk.pop();
-</span></span><span style="display:flex;"><span>        res.push_back(curr<span style="color:#ff79c6">-&gt;</span>val);
-</span></span><span style="display:flex;"><span>        curr <span style="color:#ff79c6">=</span> curr<span style="color:#ff79c6">-&gt;</span>right;
+</span></span><span style="display:flex;"><span>        res.push_back(curr<span style="color:#f92672">-&gt;</span>val);
+</span></span><span style="display:flex;"><span>        curr <span style="color:#f92672">=</span> curr<span style="color:#f92672">-&gt;</span>right;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> res;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> res;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="后序遍历">后序遍历</h3>
 <p>后序遍历的迭代实现：</p>
 <p>我们从根节点开始，将每个节点以及其左子树中的节点都入栈，直到遇到叶子节点。然后，检查栈顶节点的右子树是否为空，或者是否已经访问过。如果是，则将栈顶节点的值加入结果列表，并将其弹出栈。然后，将<code>prev</code>指针指向当前弹出的节点，继续处理下一个节点。如果栈顶节点的右子树不为空且未被访问过，则将当前节点指向其右子树，继续迭代处理右子树。最终，返回得到的结果列表，即为后序遍历的结果。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> postorderTraversal(TreeNode<span style="color:#ff79c6">*</span> root) {
-</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> res;
-</span></span><span style="display:flex;"><span>    stack<span style="color:#ff79c6">&lt;</span>TreeNode<span style="color:#ff79c6">*&gt;</span> stk;
-</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#ff79c6">*</span> prev <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> postorderTraversal(TreeNode<span style="color:#f92672">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> res;
+</span></span><span style="display:flex;"><span>    stack<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">*&gt;</span> stk;
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> prev <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span> (root <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span> <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>stk.empty()) {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (root <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (root <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>stk.empty()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (root <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
 </span></span><span style="display:flex;"><span>            stk.push(root);
-</span></span><span style="display:flex;"><span>            root <span style="color:#ff79c6">=</span> root<span style="color:#ff79c6">-&gt;</span>left;
+</span></span><span style="display:flex;"><span>            root <span style="color:#f92672">=</span> root<span style="color:#f92672">-&gt;</span>left;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        root <span style="color:#ff79c6">=</span> stk.top();
+</span></span><span style="display:flex;"><span>        root <span style="color:#f92672">=</span> stk.top();
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (root<span style="color:#ff79c6">-&gt;</span>right <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">nullptr</span> <span style="color:#ff79c6">||</span> root<span style="color:#ff79c6">-&gt;</span>right <span style="color:#ff79c6">==</span> prev) {
-</span></span><span style="display:flex;"><span>            res.push_back(root<span style="color:#ff79c6">-&gt;</span>val);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (root<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">||</span> root<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">==</span> prev) {
+</span></span><span style="display:flex;"><span>            res.push_back(root<span style="color:#f92672">-&gt;</span>val);
 </span></span><span style="display:flex;"><span>            stk.pop();
-</span></span><span style="display:flex;"><span>            prev <span style="color:#ff79c6">=</span> root;
-</span></span><span style="display:flex;"><span>            root <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nullptr</span>;
-</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">else</span> {
-</span></span><span style="display:flex;"><span>            root <span style="color:#ff79c6">=</span> root<span style="color:#ff79c6">-&gt;</span>right;
+</span></span><span style="display:flex;"><span>            prev <span style="color:#f92672">=</span> root;
+</span></span><span style="display:flex;"><span>            root <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            root <span style="color:#f92672">=</span> root<span style="color:#f92672">-&gt;</span>right;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> res;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> res;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="宽度优先遍历层次遍历">宽度优先遍历（层次遍历）</h3>
 <p>宽度优先遍历通过队列来实现，代码如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> bfs(TreeNode<span style="color:#ff79c6">*</span> root) {
-</span></span><span style="display:flex;"><span>    vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int</span><span style="color:#ff79c6">&gt;</span> res;
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">nullptr</span>) <span style="color:#ff79c6">return</span> res;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> bfs(TreeNode<span style="color:#f92672">*</span> root) {
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> res;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (root <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) <span style="color:#66d9ef">return</span> res;
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    queue<span style="color:#ff79c6">&lt;</span>TreeNode<span style="color:#ff79c6">*&gt;</span> q;
+</span></span><span style="display:flex;"><span>    queue<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">*&gt;</span> q;
 </span></span><span style="display:flex;"><span>    q.push(root);
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span> (<span style="color:#ff79c6">!</span>q.empty()) {
-</span></span><span style="display:flex;"><span>        TreeNode<span style="color:#ff79c6">*</span> curr <span style="color:#ff79c6">=</span> q.front();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>q.empty()) {
+</span></span><span style="display:flex;"><span>        TreeNode<span style="color:#f92672">*</span> curr <span style="color:#f92672">=</span> q.front();
 </span></span><span style="display:flex;"><span>        q.pop();
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        res.push_back(curr<span style="color:#ff79c6">-&gt;</span>val);
+</span></span><span style="display:flex;"><span>        res.push_back(curr<span style="color:#f92672">-&gt;</span>val);
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (curr<span style="color:#ff79c6">-&gt;</span>left <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
-</span></span><span style="display:flex;"><span>            q.push(curr<span style="color:#ff79c6">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (curr<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            q.push(curr<span style="color:#f92672">-&gt;</span>left);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (curr<span style="color:#ff79c6">-&gt;</span>right <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nullptr</span>) {
-</span></span><span style="display:flex;"><span>            q.push(curr<span style="color:#ff79c6">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (curr<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            q.push(curr<span style="color:#f92672">-&gt;</span>right);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> res;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> res;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
 
@@ -422,6 +422,12 @@
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B" title="全国大学生智能汽车竞赛">
+                            全国大学生智能汽车竞赛
+                        </a>
                         
                         
                         
@@ -615,6 +621,30 @@
 
 
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("pre > code").forEach((codeBlock) => {
+    const button = document.createElement("button");
+    button.className = "copy-button";
+    button.type = "button";
+    button.innerText = "复制";
+
+    button.addEventListener("click", () => {
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        button.innerText = "复制成功!";
+        setTimeout(() => {
+          button.innerText = "Copy";
+        }, 2000);
+      });
+    });
+
+    const pre = codeBlock.parentNode;
+    pre.style.position = "relative";
+    pre.appendChild(button);
+  });
+});
+</script>
 
 </body>
 </html>
