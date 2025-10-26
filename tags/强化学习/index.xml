@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>强化学习的数学原理 on Jerry Blog</title>
+    <link>https://huang-0421.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in 强化学习的数学原理 on Jerry Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://huang-0421.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>强化学习的数学原理-第一章</title>
+      <link>https://huang-0421.github.io/AA/RL_01/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/AA/RL_01/</guid>
+      <description>&lt;h2 id=&#34;第一章--基本概念&#34;&gt;第一章 · 基本概念&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;状态 state&lt;/code&gt;：在环境中所处的状态，包括位置、速度、加速度等。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;状态空间 state space&lt;/code&gt;：状态空间，表示所有状态的集合&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;动作 Action&lt;/code&gt;：动作，对于一个state有上下左右和静止五种状态。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

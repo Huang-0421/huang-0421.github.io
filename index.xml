@@ -6,8 +6,29 @@
     <description>Recent content on Jerry Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://huang-0421.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>强化学习的数学原理-第一章</title>
+      <link>https://huang-0421.github.io/AA/RL_01/</link>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/AA/RL_01/</guid>
+      <description>&lt;h2 id=&#34;第一章--基本概念&#34;&gt;第一章 · 基本概念&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;状态 state&lt;/code&gt;：在环境中所处的状态，包括位置、速度、加速度等。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;状态空间 state space&lt;/code&gt;：状态空间，表示所有状态的集合&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;动作 Action&lt;/code&gt;：动作，对于一个state有上下左右和静止五种状态。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>全国大学生智能汽车竞赛--讯飞组解读(三)</title>
+      <link>https://huang-0421.github.io/AA/smartcar_03/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/AA/smartcar_03/</guid>
+      <description>&lt;h2 id=&#34;语音启动&#34;&gt;语音启动&lt;/h2&gt;&#xA;&lt;p&gt;官方给出的语音启动方法是到官网注册账号然后获取语音识别API。由于过程比较复杂，而且会出现报错问题，所以我取巧利用麦克风回调函数来完成语音启动。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>全国大学生智能汽车竞赛--讯飞组解读(二)</title>
+      <link>https://huang-0421.github.io/AA/smartcar_02/</link>
+      <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/AA/smartcar_02/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;ROS（Robot Operating System，机器人操作系统）是一个面向机器人开发的开源软件框架与工具集。它为机器人系统的构建、运行和协作提供了标准化的基础环境。本篇文章将从ROS的机制原理入手，告诉你ROS能做什么。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>全国大学生智能汽车竞赛--讯飞组解读(一)</title>
       <link>https://huang-0421.github.io/AA/smartcar_01/</link>
@@ -83,7 +104,7 @@
       <link>https://huang-0421.github.io/notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://huang-0421.github.io/notes/</guid>
-      <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;数据结构与算法&#34;&gt;&lt;a href=&#34;https://huang-0421.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/&#34;&gt;数据结构与算法&lt;/a&gt;&lt;/h4&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;数据结构与算法&#34;&gt;&lt;a href=&#34;https://huang-0421.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/&#34;&gt;数据结构与算法&lt;/a&gt;&lt;/h4&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;全国大学生智能汽车竞赛讯飞组&#34;&gt;&lt;a href=&#34;https://huang-0421.github.io/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/&#34;&gt;全国大学生智能汽车竞赛讯飞组&lt;/a&gt;&lt;/h4&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;h4 id=&#34;强化学习的数学原理&#34;&gt;&lt;a href=&#34;https://huang-0421.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/&#34;&gt;强化学习的数学原理&lt;/a&gt;&lt;/h4&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>
