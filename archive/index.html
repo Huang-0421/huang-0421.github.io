@@ -210,8 +210,17 @@
                     
                         
                     
+                        
+                    
 
                     <ul>
+                    
+                        <li>
+                            <span>11/03</span> — 
+                            <a href="/AA/RL_02/">
+                                强化学习的数学原理-第二章
+                            </a>
+                        </li>
                     
                         <li>
                             <span>10/15</span> — 
@@ -443,7 +452,16 @@
 
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {strict: false});"></script>
+        onload="renderMathInElement(document.body, {
+          strict: false,
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });">
+</script>
 
 <footer>
     <div class="container">

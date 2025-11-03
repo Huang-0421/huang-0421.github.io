@@ -6,8 +6,15 @@
     <description>Recent content in 强化学习的数学原理 on Jerry Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 03 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://huang-0421.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>强化学习的数学原理-第二章</title>
+      <link>https://huang-0421.github.io/AA/RL_02/</link>
+      <pubDate>Mon, 03 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/AA/RL_02/</guid>
+      <description>&lt;h2 id=&#34;强化学习的数学原理第二章&#34;&gt;强化学习的数学原理&amp;ndash;第二章&lt;/h2&gt;&#xA;&lt;p&gt;上一章提到，return十分重要，因为可以用其评估某条线路的好坏。简单来说，return可以通过定义进行计算，即沿着路线依次将reward相加；另外，回报也可以通过&lt;strong&gt;自举法&lt;/strong&gt;(bootstrapping)求出。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>强化学习的数学原理-第一章</title>
       <link>https://huang-0421.github.io/AA/RL_01/</link>

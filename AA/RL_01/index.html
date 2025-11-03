@@ -278,7 +278,13 @@ $$</p>
 G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \gamma^3 r_{t+3} + \dots = \sum_{k=0}^{\infty} \gamma^k r_{t+k}
 $$</p>
 <p>由于γ在[0,1)，所以随着return的不断增加，reward所占的权重越来越小。<mark>同时，还可以使用γ来平衡更远或者更近的rewards。</mark>越接近0，长远的γ多次方就会更小，于是就跟注重短时；越接近1，长远的γ就会偏大，更注重长远。</p>
+<blockquote>
+<p>为什么不从第一项开始加discount rate？</p></blockquote>
+<p>个人认为，r_t是下一时刻马上就能获得的奖励，是确定的，所以不用加discount rate。而为了逐渐减少未来奖励的重要性，从第二项开始乘上系数。</p>
 </li>
+</ol>
+<p style="margin: 0.5em 0;"></p>
+<ol start="5">
 <li>
 <p><code>回合 episode</code>：一般指一段有限的trajectory，如果一个任务最多是有限多步，那么被称为“回合制任务”，否则为“持续性任务”。我们可以在回合制任务到达终止状态后将其转变为持续性任务</p>
 </li>
@@ -317,6 +323,11 @@ $$</p>
                             Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/AA/RL_02/" data-toggle="tooltip" data-placement="top" title="强化学习的数学原理-第二章">Next
+                            Post &rarr;</a>
+                    </li>
                     
                 </ul>
                 
@@ -406,7 +417,16 @@ $$</p>
 
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {strict: false});"></script>
+        onload="renderMathInElement(document.body, {
+          strict: false,
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });">
+</script>
 
 <footer>
     <div class="container">

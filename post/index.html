@@ -179,7 +179,7 @@
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
-                            2025.10.15
+                            2025.11.03
                             
                             
                             
@@ -296,7 +296,16 @@
 
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {strict: false});"></script>
+        onload="renderMathInElement(document.body, {
+          strict: false,
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        });">
+</script>
 
 <footer>
     <div class="container">

@@ -10,23 +10,23 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://huang-0421.github.io//img/big-scene.jpg">
-    <meta property="twitter:image" content="https://huang-0421.github.io//img/big-scene.jpg" />
+    <meta property="og:image" content="/img/RL/background.jpg">
+    <meta property="twitter:image" content="/img/RL/background.jpg" />
     
 
     
-    <meta name="title" content="" />
-    <meta property="og:title" content="" />
-    <meta property="twitter:title" content="" />
+    <meta name="title" content="强化学习的数学原理-第二章" />
+    <meta property="og:title" content="强化学习的数学原理-第二章" />
+    <meta property="twitter:title" content="强化学习的数学原理-第二章" />
     
 
     
-    <meta name="description" content="黄瑞杰，CQU 计算机科学与技术本科生，热衷开源项目与技术分享 | 在这里记录学习成长、编程实践与个人探索。">
-    <meta property="og:description" content="黄瑞杰，CQU 计算机科学与技术本科生，热衷开源项目与技术分享 | 在这里记录学习成长、编程实践与个人探索。" />
-    <meta property="twitter:description" content="黄瑞杰，CQU 计算机科学与技术本科生，热衷开源项目与技术分享 | 在这里记录学习成长、编程实践与个人探索。" />
+    <meta name="description" content="本章介绍了状态值、动作值和贝尔曼公式的推导过程">
+    <meta property="og:description" content="本章介绍了状态值、动作值和贝尔曼公式的推导过程" />
+    <meta property="twitter:description" content="本章介绍了状态值、动作值和贝尔曼公式的推导过程" />
     
 
-    <meta property="og:url" content="https://huang-0421.github.io/categories/" />
+    <meta property="og:url" content="https://huang-0421.github.io/AA/RL_02/" />
 
     
     <meta property="twitter:card" content="summary" />
@@ -36,9 +36,9 @@
     <meta name="keyword"  content="黄瑞杰, huangruijie, Huangruijie, Jerry, 黄瑞杰的网络日志, 黄瑞杰的博客, Jerry Blog, 博客, 个人网站, 互联网, Web, ROS, 机器人, 本科成长,  计算机专业">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Categories | 黄瑞杰的博客</title>
+    <title>强化学习的数学原理-第二章 | 黄瑞杰的博客</title>
 
-    <link rel="canonical" href="/categories/">
+    <link rel="canonical" href="/AA/RL_02/">
 
     
 
@@ -159,19 +159,35 @@
 
 
 
-<header class="intro-header" 
-        style="background-image: url('/img/big-scene.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/RL/background.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1 class="animate__animated animate__flipInY">
+                <div class="post-heading">
+                    <div class="tags">
                         
-                            Categories  
+                        <a class="tag" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0" title="强化学习">
+                            强化学习
+                        </a>
                         
-                    </h1>
-                    <span class="subheading">
-                        路在脚下，心向远方
+                    </div>
+                    <h1>强化学习的数学原理-第二章</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            2025.11.03
+                            
+                            
+                            
+                            
                     </span>
                 </div>
             </div>
@@ -185,13 +201,221 @@
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 post-container">
 
-         	
+                
+                <h2 id="强化学习的数学原理第二章">强化学习的数学原理&ndash;第二章</h2>
+<p>上一章提到，return十分重要，因为可以用其评估某条线路的好坏。简单来说，return可以通过定义进行计算，即沿着路线依次将reward相加；另外，回报也可以通过<strong>自举法</strong>(bootstrapping)求出。</p>
+<img src="/img/RL/image-20251027142343871.png" alt="图片走丢了..." width="400" style="margin-top:0px; margin-bottom:10px;">
+<figcaption style="font-size:14px; text-align:center; color:gray;">
+   轨迹图
+</figcaption>
+<ol>
+<li>
+<p>定义法：沿着路线依次将reward相加。</p>
+<p>$$
+v_1 = r_{1} + \gamma r_{2} + \gamma^2 r_{3} + \gamma^3 r_{4}
+$$</p>
+<p>$$
+v_2 = r_{2} + \gamma r_{3} + \gamma^2 r_{4} + \gamma^3 r_{1}
+$$</p>
+<p>$$
+v_3 = r_{3} + \gamma r_{4} + \gamma^2 r_{1} + \gamma^3 r_{2}
+$$</p>
+<p>$$
+v_4 = r_{4} + \gamma r_{1} + \gamma^2 r_{2} + \gamma^3 r_{3}
+$$</p>
+</li>
+<li>
+<p>自举法：我们可以观察大，每一个vi都可以提出一个vj，例如</p>
+<p>$$
+v_1 = r_1 + \gamma(r_2 + \gamma r_3 + \cdots) = r_1 + \gamma v_2
+$$</p>
+<p>这是一个有趣的现象，<mark>从不同状态出发的回报值是彼此依赖的</mark>，这也是贝尔曼方程的核心思想。如果我们将其整理为<strong>矩阵-向量</strong>的线性方程形式：</p>
+<p>$$
+\begin{bmatrix}
+v_1 \newline
+v_2 \newline
+v_3 \newline
+v_4
+\end{bmatrix}=
+\begin{bmatrix}
+r_1 \newline
+r_2 \newline
+r_3 \newline
+r_4
+\end{bmatrix}+
+\begin{bmatrix}
+\gamma v_2 \newline
+\gamma v_3 \newline
+\gamma v_4 \newline
+\gamma v_1
+\end{bmatrix}=
+\begin{bmatrix}
+r_1 \newline
+r_2 \newline
+r_3 \newline
+r_4
+\end{bmatrix}+
+\gamma
+\begin{bmatrix}
+0 &amp; 1 &amp; 0 &amp; 0 \newline
+0 &amp; 0 &amp; 1 &amp; 0 \newline
+0 &amp; 0 &amp; 0 &amp; 1 \newline
+1 &amp; 0 &amp; 0 &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+v_1 \newline
+v_2 \newline
+v_3 \newline
+v_4
+\end{bmatrix}
+$$</p>
+<p>可以简写为以下形式，移项求逆就可以求出v。
+$$
+v = r + \gamma Pv
+$$</p>
+</li>
+</ol>
+<h3 id="状态值-state-value">状态值 state value</h3>
+<p>回报 return是对于单个轨迹确定的，然而通常情况下<mark>一个状态出发可能会得到不同的轨迹和回报</mark>。所以，我们需要引入状态值的概念。状态值也就是平均值、期望，状态值越高说明这条轨迹效果越好。</p>
+<p>按照之前的定义折扣回报为：</p>
+<p>$$
+G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \cdots
+$$</p>
+<p>这里的<code>Gt</code>是一个随机变量，所以我们可以计算它的期望值。
+$$
+v_\pi(S) = \mathbb{E}[G_t \mid S_t= s]
+$$
+也就是，在状态为s的情况下，回报的平均值为$v_\pi(S)$，它也被称为状态值函数，或者<code>状态值 state value</code>。这里注意三点：</p>
+<ol>
+<li>$v_\pi(S)$的值依赖于$s$，因为不同的状态的状态值一般是不同的。</li>
+<li>$v_\pi(S)$的值依赖于$\pi$，也就是策略，因为不同的策略会导致不同的动作从而使状态值不同。</li>
+<li>$v_\pi(S)$的值不依赖于$t$，因为系统是稳定的，不会因为你的出发时间而变化。</li>
+</ol>
+<blockquote>
+<p>状态值与回报的关系是什么？</p>
+<p>当轨迹确定时，会得到一个确定的回报。如果轨迹不确定或者说有多条轨迹时，通过概率算出的回报期望就是状态值。</p></blockquote>
+<h3 id="贝尔曼方程">贝尔曼方程</h3>
+<h4 id="公式推导">公式推导</h4>
+<p>由上文可得
+$$
+v_\pi(s) = \mathbb{E}[G_t \mid S_t= s]
+$$
+其中
+$$
+G_t = R_{t} + \gamma R_{t+1} + \gamma^2 R_{t+2} + \dots = R_t + \gamma G_{t+1}
+$$
+所以
+$$
+\begin{align*}
+v_\pi(s)
+&amp;= \mathbb{E} \big[ G_t \mid S_t = s \big] \newline
+&amp;= \mathbb{E} \big[ R_t + \gamma G_{t+1} \mid S_t = s \big] \newline
+&amp;= \mathbb{E} \big[ R_t \mid S_t = s \big] + \gamma  \mathbb{E} \big[G_{t+1} \mid S_t = s \big]
+\end{align*}
+$$
+分别计算两项：</p>
+<p>$$
+\begin{align*}
+\mathbb{E}[R_t \mid S_t = s] &amp;= \sum_a \pi(a|s) \mathbb{E}[R_t \mid S_t = s, A_t = a] \newline
+&amp;= \sum_a \pi(a|s) \sum_a p(r|s,a)r
+\end{align*}
+$$</p>
+<p>解释：状态$s$下的回报期望为，执行$a$动作的概率，乘上执行$a$动作的奖励期望。同理，奖励期望由可以拆解为，$s$状态下执行$a$动作获得该奖励的概率，乘上奖励值。</p>
+<hr>
+<p>$$
+\begin{align*}
+\mathbb{E} \big[G_{t+1} \mid S_t = s \big] &amp;= p(s_{t+1}|s) \sum_s\mathbb{E} \big[G_{t+1} \mid S_{t+1} = s_{t+1} \big] \newline
+&amp;= p(s_{t+1}|s) \sum_sv_\pi(s_{t+1}) \newline
+&amp;= \sum_a \pi(a|s) p(s_{t+1}|s,a) \sum_sv_\pi(s_{t+1})
+\end{align*}
+$$</p>
+<p>解释：要求状态$s$下的$G_{t+1}$，$s$跳到$s_{t+1}$的概率乘上在$s_{t+1}$状态下的状态值。而$s$跳到$s_{t+1}$的概率可以拆解为执行动作$a$的概率乘上执行完动作$a$跳到$s_{t+1}$的概率。</p>
+<p>再将两项加起来提出一个共同项：
+$$
+v_\pi(s) = \sum_a \pi(a|s) \sum_a p(r|s,a)r + \gamma \sum_a \pi(a|s)p(s_{t+1}|s,a) v_\pi(s_{t+1}) \newline
+$$
+得到<strong>贝尔曼方程</strong>
+$$
+v_\pi(s) = \sum_a \pi(a|s) \left[ \sum_r p(r|s,a) r + \gamma  \sum_{s&rsquo;} p(s_{t+1}|s,a) v_\pi(s_{t+1}) \right]
+$$</p>
+<p>如何理解这个等式呢？贝尔曼方程的本质在于<mark>从$s$出发的回报，等于即时奖励加上下一个状态出发的回报。</mark></p>
+<h3 id="矩阵向量形式">矩阵向量形式</h3>
+<p>由于每一个$v_\pi(s)$都可以得到$v_\pi(s_{t+1})$的方程，所以我们可以联立这些方程进而得到简洁的<strong>矩阵-向量形式</strong>。</p>
+<p>首先我们将上述贝尔曼公式重写为：
+$$
+v_\pi(s) = r_\pi(s) + \gamma \sum_s p_\pi(s&rsquo; \mid s)v_\pi(s&rsquo;)
+$$
+这里$r_\pi(s)$表示即时奖励的期望值，而$p_\pi(s&rsquo; \mid s)$代表在策略$\pi$下从状态$s$经过一步转移到状态$s&rsquo;$的概率。写成矩阵向量形式如下：
+$$
+v_\pi = r_\pi + \gamma P_\pi v_\pi
+$$
+例子：当环境中有四个状态时，矩阵形式如下。
+$$
+\begin{bmatrix}
+v_{\pi}(s_1) \newline
+v_{\pi}(s_2) \newline
+v_{\pi}(s_3) \newline
+v_{\pi}(s_4)
+\end{bmatrix}=
+\begin{bmatrix}
+r_{\pi}(s_1) \newline
+r_{\pi}(s_2) \newline
+r_{\pi}(s_3) \newline
+r_{\pi}(s_4)
+\end{bmatrix} + \gamma
+\begin{bmatrix}
+p_{\pi}(s_1|s_1) &amp; p_{\pi}(s_2|s_1) &amp; p_{\pi}(s_3|s_1) &amp; p_{\pi}(s_4|s_1) \newline
+p_{\pi}(s_1|s_2) &amp; p_{\pi}(s_2|s_2) &amp; p_{\pi}(s_3|s_2) &amp; p_{\pi}(s_4|s_2) \newline
+p_{\pi}(s_1|s_3) &amp; p_{\pi}(s_2|s_3) &amp; p_{\pi}(s_3|s_3) &amp; p_{\pi}(s_4|s_3) \newline
+p_{\pi}(s_1|s_4) &amp; p_{\pi}(s_2|s_4) &amp; p_{\pi}(s_3|s_4) &amp; p_{\pi}(s_4|s_4)
+\end{bmatrix}
+\begin{bmatrix}
+v_{\pi}(s_1) \newline
+v_{\pi}(s_2) \newline
+v_{\pi}(s_3) \newline
+v_{\pi}(s_4)
+\end{bmatrix}
+$$</p>
+<h3 id="动作值-action-value">动作值 action value</h3>
+<p>动作值定义为：在一个状态采取一个动作之后获得的回报的期望值。
+$$
+q_\pi(s,a) = \mathbb{E} \big[ G_t \mid S_t = s, A_t = a \big]
+$$
+动作值依赖于一个<strong>状态-动作配对</strong>，而不是单单一个动作。</p>
+<p>动作值和状态值的关系如下：
+$$
+v_\pi(s) = \sum_a \pi(a|s) q_\pi(s,a)
+$$
+由上式可以看出，<mark>状态值是该状态对应的动作值的期望值</mark>。</p>
+<p>此外，又因为(13)式，我们可以得到：
+$$
+q_\pi(s,a) = \sum_r p(r|s,a) r + \gamma  \sum_{s&rsquo;} p(s_{t+1}|s,a) v_\pi(s_{t+1})
+$$
+可见，<mark>动作值是一个包含状态值的变量的期望值</mark>。</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/AA/RL_01/" data-toggle="tooltip" data-placement="top" title="强化学习的数学原理-第一章">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
                 
 <script src="https://giscus.app/client.js"
         data-repo="Huang-0421/BlogComment"
@@ -212,8 +436,25 @@
 
 
 
-
             </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
             
             <div class="
                 col-lg-8 col-lg-offset-2
@@ -230,19 +471,19 @@
                         
                         
                         <a href="/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B" title="全国大学生智能汽车竞赛">
-                        全国大学生智能汽车竞赛
+                            全国大学生智能汽车竞赛
                         </a>
                         
                         
                         
                         <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0" title="强化学习">
-                        强化学习
+                            强化学习
                         </a>
                         
                         
                         
                         <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95" title="数据结构与算法">
-                        数据结构与算法
+                            数据结构与算法
                         </a>
                         
                         
