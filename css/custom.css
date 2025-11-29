@@ -79,3 +79,24 @@ pre::before {
   opacity: 1;
   background: #666;
 }
+
+.katex-display {
+    margin: 1em 0; /* 块公式上下间距 */
+}
+
+.katex {
+    vertical-align: middle; /* 行内公式稍微居中 */
+}
+
+
+/* 链接、列表等的间距可微调 */
+ul, ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 1.6;
+}
+
+blockquote {
+  color: #989898;
+  border-left: 5px solid #4D82F7;
+}
