@@ -14,10 +14,20 @@ p {
 }
 
 mark {
-  background-color: #ffeb3b; /* 你喜欢的颜色 */
+  /*  #ffeb3b*/
+  background-color:#add8fa; /* 你喜欢的颜色 */
   color: black;             /* 高亮时的文字颜色 */
   padding: 0 2px;           /* 加点内边距好看 */
   border-radius: 3px;       /* 圆角效果 */
+}
+
+pre code {
+  line-height: 1.8;          /* 比 2.0 更均衡，不松散 */
+  font-size: 1.0em;         /* 略微收紧，抵消行距增大带来的“臃肿感” */
+  letter-spacing: 0.3px;     /* 提升等宽字体的辨识度 */
+  tab-size: 4;               /* 保证缩进美观 */
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
 }
 
 /* 代码块外框（Mac 风格） */
@@ -95,8 +105,34 @@ ul, ol {
   margin-bottom: 1em;
   line-height: 1.6;
 }
-
+/* #989898 */
 blockquote {
-  color: #989898;
+  color: #435060;
   border-left: 5px solid #4D82F7;
+  font-style: normal;
+  background-color: #F2F4F7;
+  padding: 0.75em 1em;
+  margin: 1em 0;
+  border-radius: 4px;          /* 轻微圆角 */
+}
+
+.post-content-preview {
+  /* font-style: normal; */
+  padding: 1px 0px;   /* 上下 8px，左右 12px */
+}
+
+/* 侧边栏个人简介 hr：收紧间距 + 加深颜色 */
+.short-about hr {
+  margin-top: 7px;              /* 原来通常 ≥ 8px，缩小上下间距 */
+  margin-bottom: 7px; 
+  height: 1.0px;               /* 保持细线 */
+  /* border: none; 
+  background-color: #808080;   线的颜色，可以改成你想要的深色 */
+}
+.sidebar-container .short-about p {
+    margin-top: 0;
+    margin-bottom: 0px;
+    font-size: 16px;        /* 字体大小，可根据需要调节 */
+    font-weight: 350;       /* 加粗 */
+    color: #808080;         /* 黑色 */
 }

@@ -6,14 +6,21 @@
     <description>Recent content in Posts on Jerry Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://huang-0421.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>强化学习的数学原理-第四章</title>
+      <link>https://huang-0421.github.io/AA/RL_04/</link>
+      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://huang-0421.github.io/AA/RL_04/</guid>
+      <description>&lt;h3 id=&#34;值迭代算法value-iteration&#34;&gt;值迭代算法（value iteration）&lt;/h3&gt;&#xA;&lt;p&gt;由上一章可知&#xA;$$&#xA;v_{k+1} =  \max_{\pi \in \Pi} (r_{\pi} + \gamma P_\pi v_k)&#xA;$$&#xA;当 $k \to \infty$ 时，$v_k$ 以指数速度收敛到$v^*$。&lt;/p&gt;&#xA;&lt;p&gt;值迭代算法包括两个步骤：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;mark&gt;策略更新&lt;/mark&gt;：根据上一步计算出的&lt;strong&gt;估计值向量&lt;/strong&gt;，求解出最好的策略。&#xA;$$&#xA;\pi ^ * = \arg\max_{\pi \in \Pi} (r_\pi + \gamma P_\pi v^* )&#xA;$$&lt;/p&gt;</description>
+    </item>
     <item>
       <title>强化学习的数学原理-第三章</title>
       <link>https://huang-0421.github.io/AA/RL_03/</link>
       <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://huang-0421.github.io/AA/RL_03/</guid>
-      <description>&lt;h2 id=&#34;强化学习的数学原理第三章&#34;&gt;强化学习的数学原理&amp;ndash;第三章&lt;/h2&gt;&#xA;&lt;h3 id=&#34;optimal-policies&#34;&gt;optimal policies&lt;/h3&gt;&#xA;&lt;p&gt;从直觉上来看，不同的policy会导致不同的return，而强化学习基本的思想就是找到一个最优策略&lt;code&gt;optimal policies&lt;/code&gt;使得奖励最大。&lt;/p&gt;</description>
+      <description>&lt;h3 id=&#34;optimal-policies&#34;&gt;optimal policies&lt;/h3&gt;&#xA;&lt;p&gt;从直觉上来看，不同的policy会导致不同的return，而强化学习基本的思想就是找到一个最优策略&lt;code&gt;optimal policies&lt;/code&gt;使得奖励最大。&lt;/p&gt;</description>
     </item>
     <item>
       <title>强化学习的数学原理-第二章</title>

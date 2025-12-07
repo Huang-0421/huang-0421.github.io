@@ -15,18 +15,18 @@
     
 
     
-    <meta name="title" content="强化学习的数学原理-第三章" />
-    <meta property="og:title" content="强化学习的数学原理-第三章" />
-    <meta property="twitter:title" content="强化学习的数学原理-第三章" />
+    <meta name="title" content="强化学习的数学原理-第四章" />
+    <meta property="og:title" content="强化学习的数学原理-第四章" />
+    <meta property="twitter:title" content="强化学习的数学原理-第四章" />
     
 
     
-    <meta name="description" content="本章介绍最优策略与最优状态值的定义，并利用压缩映射定理证明其解的存在性的唯一性。">
-    <meta property="og:description" content="本章介绍最优策略与最优状态值的定义，并利用压缩映射定理证明其解的存在性的唯一性。" />
-    <meta property="twitter:description" content="本章介绍最优策略与最优状态值的定义，并利用压缩映射定理证明其解的存在性的唯一性。" />
+    <meta name="description" content="本章介绍了可以得到最优策略的三种方法：值迭代算法、策略迭代算法、截断策略迭代算法，以及三者的区别。">
+    <meta property="og:description" content="本章介绍了可以得到最优策略的三种方法：值迭代算法、策略迭代算法、截断策略迭代算法，以及三者的区别。" />
+    <meta property="twitter:description" content="本章介绍了可以得到最优策略的三种方法：值迭代算法、策略迭代算法、截断策略迭代算法，以及三者的区别。" />
     
 
-    <meta property="og:url" content="https://huang-0421.github.io/AA/RL_03/" />
+    <meta property="og:url" content="https://huang-0421.github.io/AA/RL_04/" />
 
     
     <meta property="twitter:card" content="summary" />
@@ -36,9 +36,9 @@
     <meta name="keyword"  content="黄瑞杰, huangruijie, Huangruijie, Jerry, 黄瑞杰的网络日志, 黄瑞杰的博客, Jerry Blog, 博客, 个人网站, 互联网, Web, ROS, 机器人, 本科成长,  计算机专业">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>强化学习的数学原理-第三章 | 黄瑞杰的博客</title>
+    <title>强化学习的数学原理-第四章 | 黄瑞杰的博客</title>
 
-    <link rel="canonical" href="/AA/RL_03/">
+    <link rel="canonical" href="/AA/RL_04/">
 
     
 
@@ -179,11 +179,11 @@
                         </a>
                         
                     </div>
-                    <h1>强化学习的数学原理-第三章</h1>
+                    <h1>强化学习的数学原理-第四章</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
-                            2025.11.17
+                            2025.11.30
                             
                             
                             
@@ -209,140 +209,144 @@
                 post-container">
 
                 
-                <h3 id="optimal-policies">optimal policies</h3>
-<p>从直觉上来看，不同的policy会导致不同的return，而强化学习基本的思想就是找到一个最优策略<code>optimal policies</code>使得奖励最大。</p>
-<p>如果对于任意的状态s，策略1的状态值都比策略2的状态值高。则称策略1优于策略二。
+                <h3 id="值迭代算法value-iteration">值迭代算法（value iteration）</h3>
+<p>由上一章可知
 $$
-v_{\pi_1}(s) \ge v_{\pi_2}(s), \quad \forall s \in S
+v_{k+1} =  \max_{\pi \in \Pi} (r_{\pi} + \gamma P_\pi v_k)
 $$
-由此，给出<code>最优策略</code>和<code>最优状态值</code>的定义：</p>
-<p><mark>如果一项策略优于所有其他可能的策略，则该策略是最优的。并且该策略对应的状态值是最优状态值。</mark></p>
-<h3 id="bellman-optimality-equationboe">Bellman Optimality equation（BOE）</h3>
-<p>$$
-\begin{align*}
-v(s) &amp;= \max_{\pi(s) \in \Pi(s)}
-\sum_{a \in A} \pi(a|s)
-\left(
-\sum_{r \in R} p(r|s, a) r
-+ \gamma \sum_{s&rsquo; \in S} p(s&rsquo;|s, a) v(s&rsquo;)
-\right) \newline
-&amp;= \max_{\pi(s) \in \Pi(s)}
-\sum_{a \in A} \pi(a|s) q(s, a)
-\end{align*}
-$$</p>
-<p>可以看出，贝尔曼最优公式就是在贝尔曼公式的基础上，增加了对策略的最大选择。此时，公式中有两个未知变量$v(s)$ 和 $\pi(a|s) $。你可能会面临以下问题：</p>
-<ul>
-<li>该方程有解吗？</li>
-<li>解是唯一的吗？</li>
-<li>如何求解这个方程？</li>
-<li>求出的解与最优策略有什么关系？</li>
-</ul>
-<p>实际上，这两个变量可以一一求解。看如下这个例子：
-$$
-x = \max_{y\in \R} (2x - 1 - y^2)
-$$
-x和y都是未知量，问题就在于，如何取y，使得括号中的$(2x - 1 - y^2)$最大。显然，当y = 0时，括号中取的最大值$2x - 1$。这样就将y值确定了，然后再将y = 0代入，求得x = 1。</p>
-<p>再来看贝尔曼最优公式：
-$$
-v(s)= \max_{\pi(s) \in \Pi(s)}
-\sum_{a \in A} \pi(a|s) q(s, a)
-$$
-如何取策略$\pi$使得后面部分的求和最大呢？根据直觉来看，我们希望让$q(s,a)$越大的项乘上更大的权重$\pi(a|s)$。即<mark>最优策略应该选择具有最大动作值的动作</mark>，于是：
-$$
-\pi(a|s) =
-\begin{cases}
-1, &amp; a = a^* \
-0, &amp; a \ne a^*
-\end{cases}
-$$
-将上(3)式写为矩阵向量形式如下：
-$$
-v= \max_{\pi \in \Pi}(r_\pi + \gamma P_\pi v)
-$$</p>
-<h3 id="压缩映射定理">压缩映射定理</h3>
-<p>压缩映射定理是分析<code>非线性方程</code>的强大工具，也被称为<code>不动点定理</code>。</p>
-<ul>
-<li>
-<p><code>不动点</code>：考虑一个函数 $f(x)$ ，其中 $x \in \mathbb{R}$ 且 $f: \mathbb{R} \to \mathbb{R}$。如果一个点 \(x^*\) 满足：</p>
-  <div>
-  \[
-  f(x^*) = x^*
-  \]
-  </div>
-<p>那么这个点就叫<strong>不动点</strong>，因为 $x^*$ 的映射依然是自己。</p>
-</li>
-<li>
-<p><code>压缩映射</code>：如果存在 $\gamma \in (0,1)$ 使得对于任意的 $x1,x2$ 都满足：
-$$
-||f(x1) - f(x2)|| \le \gamma||x1 - x2||
-$$
-那么函数 $f$ 被称为<strong>压缩映射</strong>。</p>
-</li>
-<li>
-<p><code>压缩映射定理</code>：对于方程 $x = f(x)$ ，如果 $f$ 是一个压缩映射，则下面所有性质都成立：</p>
+当 $k \to \infty$ 时，$v_k$ 以指数速度收敛到$v^*$。</p>
+<p>值迭代算法包括两个步骤：</p>
 <ol>
-<li>存在性：一定存在一个不动点 $x$ 满足 $f(x) = x$；</li>
-<li>唯一性：不动点 $x^*$ 是唯一的；</li>
-<li>算法：考虑迭代算法 $x_{k+1} = f(x_k)$ ，给定任意一个初始值 $x_0$ ，当$k$趋近于无穷时，$x_k$ 趋近于 $x^*$ ，且具有指数收敛速度。</li>
-</ol>
-</li>
-</ul>
-<p>可以证明，<mark>贝尔曼最优方程右侧的函数$f(v)$是一个压缩映射，最优状态值和最优策略是存在且唯一的。</mark></p>
-<h3 id="求解贝尔曼最优方程">求解贝尔曼最优方程</h3>
-<p>如果$ v^* $是贝尔曼最优方程的解，那么它满足：</p>
-<p>$$
-v^* = f(v^*) = \max_{\pi \in \Pi} (r_{\pi} + \gamma P_\pi v^ *)
-$$</p>
-<p>显然，$ v^* $是一个不动点，且是唯一最优解。可以通过如下迭代算法求解：
-$$
-v_{k+1} = f(v_k) = \max_{\pi \in \Pi} (r_{\pi} + \gamma P_\pi v_k)
-$$
-当$k \to \infty$时，$v_k$以指数速度收敛到$v^*$。</p>
-<p>求解最优策略$ \pi ^ * $：
+<li>
+<p><mark>策略更新</mark>：根据上一步计算出的<strong>估计值向量</strong>，求解出最好的策略。
 $$
 \pi ^ * = \arg\max_{\pi \in \Pi} (r_\pi + \gamma P_\pi v^* )
+$$</p>
+</li>
+<li>
+<p><mark>值更新</mark>：在得到当前最好策略之后，通过以下式子计算新的<strong>估计值向量</strong>。
 $$
-<mark>最优状态值所对应的策略一定是最优策略，但是最优状态值唯一，最优策略却不唯一。</mark>因为多个策略可以产生同一个最优值函数。我们可以使用<strong>贪婪最优策略</strong>得到一个确定的最优策略：
+v_{k+1} = r_{\pi_{k+1}} + \gamma P_{\pi_{k+1}}v_k
 $$
-\pi(a|s)=
-\begin{cases}
-1,&amp; a=a^*(s) \
-0,&amp; \text{otherwise}
-\end{cases}
-$$
-注意：最优策略可以是随机的或者确定的，但是一定存在一个确定性的最优策略。</p>
+之后反复进行迭代，直到 $v_k$ 收敛，例如 $||v_{k+1} - v_{k}||$ 小于一个很小的数。</p>
 <blockquote>
-<p>最优策略是随机的：比如如果多个动作并列第一，可以：
+<p>为什么称 $v_k$ 为<strong>估计值向量</strong>而不是<strong>状态值</strong>？</p>
+<p>状态值的定义是：从某个状态出发的期望回报等于立即奖励 + 折扣后的下一状态期望回报。这也表明必须要满足：
 $$
-\pi(a_1|s)=0.7,\quad \pi(a_2|s)=0.3
+v_\pi = r_\pi + \gamma P_\pi v_\pi
 $$
-这样依然是最优策略，但是是按概率随机选择的。</p></blockquote>
-<h3 id="影响最优策略的因素">影响最优策略的因素</h3>
-<p>已知贝尔曼最优方程的元素展开形式是：
-$$
-v(s) = \max_{\pi(s) \in \Pi(s)}
-\sum_{a \in A} \pi(a|s)
-\left(
-\sum_{r \in R} p(r|s, a) r
-+ \gamma \sum_{s&rsquo; \in S} p(s&rsquo;|s, a) v(s&rsquo;)
-\right)
-$$
-在公式中，未知量$v$和$\pi$是有已知量决定的。当系统模型（即状态转移概率模型）确定时，最优策略会受到$r$和$\gamma$的影响。</p>
-<p>下面讨论，当改变$r$和$\gamma$时，最优策略会如何变化。</p>
-<p><strong>折扣因子的影响</strong></p>
-<p>前文说到，<mark>折扣因子越小，越近视；折扣因子越大，越远视。</mark></p>
-<p>如下图情况，当$\gamma = 0.9$时，回报更远视，规划的路径可能会穿过障碍；而当$\gamma = 0.5$时，回报更近视，agent不再敢于冒险，反而选择更远的路径。</p>
+的 $v_\pi$ 才能被称为<strong>状态值</strong>，上面的 $v_k$ 和 $v_{k+1}$ 都是迭代中的中间值，而最终迭代完成的值才是状态值。</p></blockquote>
+</li>
+</ol>
+<p>算法流程如图所示：</p>
 <figure>
-  <img src="/img/RL/image-20251129222336724.png" alt="图片走丢了..." width="800" style="margin-top:0px; margin-bottom:10px;">
+  <img src="/img/RL/image-20251130202254177.png" alt="图片走丢了..." width="600" style="margin-top:0px; margin-bottom:10px;">
   <figcaption style="font-size:14px; text-align:center; color:gray;">
-    例子
+    算法流程图
   </figcaption>
 </figure>
-<p>在极端状态下，$\gamma = 0$时，agent目光极其短浅，只会选择最大的即使奖励。</p>
+<p>下面用一个简单的例子详细的描述该算法的原理。</p>
+<p>已知 $r_{boundary} = r_{forbidden} = −1 $ , $r_{target} = 1$ 。黄色为禁行区域，蓝色为目标区域。</p>
+<figure>
+  <img src="/img/RL/image-20251130202643565.png" alt="图片走丢了..." width="250" style="margin-top:0px; margin-bottom:10px;">
+</figure>
+<p>初始值 $v_0$ 可以任意选择，这里选择为 $v_0 (s_1) = v_0 (s_2) = v_0 (s_3) =  v_0 (s_4) = 0$ ,我们可以建立一个<code>q-table</code>：</p>
+<figure>
+  <img src="/img/RL/image-20251130203017812.png" alt="图片走丢了..." width="800" style="margin-top:0px; margin-bottom:10px;">
+</figure>
+<p>注意往上方移动为 $a_1$，按顺时针方向为$a_1、$a_2$、$a_3$。将 $v_0$都代入公式后，得到如下的表：</p>
+<figure>
+  <img src="/img/RL/image-20251130203750618.png" alt="图片走丢了..." width="600" style="margin-top:0px; margin-bottom:10px;">
+</figure>
+<p>可以对每个状态选出动作值最大的动作，作为更新的策略。由于这里s1无论是原地不动还是进入s3，它所获得的奖励都是0，所以随机选取了一个最好策略为原地不动。</p>
+<figure>
+  <img src="/img/RL/image-20251130203915067.png" alt="图片走丢了..." width="500" style="margin-top:0px; margin-bottom:10px;">
+</figure>
+<p>然后将每个状态下最大的动作值作为值更新。</p>
+<figure>
+  <img src="/img/RL/image-20251130204002539.png" alt="图片走丢了..." width="500" style="margin-top:0px; margin-bottom:10px;">
+</figure>
 <blockquote>
-<p>注意：为什么$\gamma = 0.9$时规划的路径会进入障碍？因为这个策略是“数学”上的最优策略，而不是“直觉”上的最优。想要让求出来的解更加贴合直觉最优，需要不断调整折扣因子或者奖励值来达到更好的效果。</p></blockquote>
-<p><strong>奖励值的影响</strong></p>
-<p>可以调整奖励值的大小来改变最优策略，比如将障碍的奖励设置的非常低，那么最优策略就更能避开所有障碍。然而，<mark>如果对所有区域的奖励值进行线性缩放，则不会对最优策略产生影响。</mark>因为真正决定最优策略的不是回报的绝对值，而是不同策略所得回报之间的相对值。</p>
+<p>这里的 $v_1 (S_1) = 0$ 表示从 $S_1$ 出发的最好回报为0。</p></blockquote>
+<p>可以得到目前的策略为：</p>
+<figure>
+  <img src="/img/RL/image-20251130204957891.png" alt="图片走丢了..." width="250" style="margin-top:0px; margin-bottom:10px;">
+</figure>
+<p>接着继续进行迭代：</p>
+<figure>
+  <img src="/img/RL/image-20251130204347448.png" alt="图片走丢了..." width="600" style="margin-top:0px; margin-bottom:10px;">
+</figure>
+<blockquote>
+<p>解释一下这里的 $(s_2, a_2)$ 是如何计算的。</p>
+<p>首先我们知道，值更新 = 立即奖励 + 折扣后的下一状态期望回报。</p>
+<p>从 $s_1$ 出发执行 $a_2$ 会进入 $s_2$，其立即奖励为-1；到达 $s_2$ 之后，已知从 $s_2$ 出发的最好回报为1，再所以加上折扣*1。</p></blockquote>
+<p>计算完成并进行策略更新后得到的策略如下图：</p>
+<figure>
+  <img src="/img/RL/image-20251130205154881.png" alt="图片走丢了..." width="250" style="margin-top:0px; margin-bottom:10px;">
+  <figcaption style="font-size:14px; text-align:center; color:gray;">
+    第二次迭代后的策略
+  </figcaption>
+</figure>
+<p>我们可以发现，原本s1是选择原地不动的，但是经过一次迭代之后它选择了往s3走。这是因为，在第二次迭代中s1如果还是选择原地不动，那么它的奖励仍然是0；但是如果选择向s3走，那么它会加上一个s3的最好回报，也就是奖励变为1。</p>
+<p>我把这种迭代方式称为<strong>辐射迭代</strong>，因为这看起来像是<mark>先找靠近终点状态的最优策略，再逐渐扩散找到更远处状态的最优策略。</mark></p>
+<h3 id="策略迭代算法policy-iteration">策略迭代算法（policy iteration）</h3>
+<p>策略迭代算法包括两个步骤：</p>
+<ol>
+<li>
+<p><mark>策略评价</mark>：用于评估上一次迭代得到的策略。通过对状态估计值向量的多次迭代取收敛求解下面贝尔曼方程：
+$$
+v_{\pi_k} = r_{\pi_{k}} + \gamma P_{\pi_{k}}v_{\pi_k}
+$$</p>
+</li>
+<li>
+<p><mark>策略改进</mark>：用上一步得到的状态值 $v_{\pi_k}$ 改进策略，得到更新的策略。
+$$
+\pi_{k+1} = \arg\max_{\pi \in \Pi} (r_\pi + \gamma P_\pi v_{\pi_k})
+$$</p>
+</li>
+</ol>
+<p>迭代过程：
+$$
+\pi_0 \xrightarrow{\text{评估}} v_{\pi_0} \xrightarrow{\text{改进}} \pi_1 \xrightarrow{\text{评估}} v_{\pi_1} \xrightarrow{\text{改进}} \pi_2 \xrightarrow{\text{评估}} \dots \xrightarrow{\text{改进}} \pi^*
+$$
+由于策略评价最终会收敛到最优状态值 $v^<em>$，所以策略也会收敛到最优策略 $\pi^</em> $。</p>
+<p>这种迭代方式也是先找到靠近target的最优策略，再向周围辐射。</p>
+<blockquote>
+<p>值迭代与策略迭代的区别？</p>
+<p>值迭代：在<code>值更新</code>中计算出下一个估计值后，立刻用新的状态值反解策略（<code>策略更新</code>）。决定更新的是估计值，反解策略只是为了计算下一个估计值。它是在不断交替值更新和策略更新中得到收敛的。</p>
+<p>策略迭代：在单步中收敛出状态值，然后用这个状态值去更新出新的策略。此时，决定更新的是策略，收敛状态值只是为了求出更好的策略。此外，它是收敛后才更新的，每次更新中都要进行一次收敛。</p>
+<p>总结一下，<code>值迭代算法</code><mark>是对每一次更新进行收敛</mark>，<code>策略迭代</code><mark>是对每一次收敛进行更新。</mark></p></blockquote>
+<h3 id="截断策略迭代算法">截断策略迭代算法</h3>
+<p>根据上面讨论，可以知道<code>值迭代算法</code>在计算一次估计值后，马上进行策略更新：
+$$
+v_{k+1} = r_{\pi_{k+1}} + \gamma P_{\pi_{k+1}}v_k
+$$
+而<code>策略迭代算法</code>是在收敛出状态值后，再进行策略更新：
+$$
+v_{\pi_k} = r_{\pi_{k}} + \gamma P_{\pi_{k}}v_{\pi_k}
+$$
+一个是只计算一次，一个是计算无穷次。这是两个极端，那是否可以取一个中间的策略呢？这就是<code>截断策略迭代算法</code>。</p>
+<p><mark>我们可以确定一个迭代次数 $j$，当估计值的迭代次数达到 $j$时，就直接进行策略更新。</mark></p>
+<figure>
+  <img src="/img/RL/image-20251207153326834.png" alt="图片走丢了..." width="600" style="margin-top:0px; margin-bottom:10px;">
+  <figcaption style="font-size:14px; text-align:center; color:gray;">
+  </figcaption>
+</figure>
+<blockquote>
+<p>实际上，策略迭代算法只在理论上可行，因为我们不可能将一个估计值真的迭代无穷次后再进行策略更新。所以，真正在实现的策略迭代算法，其实就是截断策略迭代算法。</p></blockquote>
+<p>下面给出三种迭代算法的收敛速度的示意图：</p>
+<figure>
+  <img src="/img/RL/image-20251207153743634.png" alt="图片走丢了..." width="500" style="margin-top:0px; margin-bottom:10px;">
+  <figcaption style="font-size:14px; text-align:center; color:gray;">
+  收敛迭代次数对比图
+  </figcaption>
+</figure>
+<p>可以看出，策略迭代算法所需的迭代次数 $k$ 最少，值迭代算法所需的迭代次数最多，而截断策略迭代算法夹在中间。</p>
+<blockquote>
+<p>注意：这并不意味着策略迭代就是最好最快的，因为此时横轴是迭代次数 $k$，而不是时间。虽然策略迭代的迭代次数少，但是它在每一次的迭代中都会执行无数次迭代直到收敛出状态值。所以其迭代时间不一定是最短的。</p></blockquote>
+<hr>
+<p>更多关于<code>全国大学生智能汽车</code>的分享，请访问<a href="https://jerryblog.top/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/">个人主页</a>。
+期待你的评论与交流！</p>
 
 
                 
@@ -352,15 +356,10 @@ $$
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/AA/RL_02/" data-toggle="tooltip" data-placement="top" title="强化学习的数学原理-第二章">&larr;
+                        <a href="/AA/RL_03/" data-toggle="tooltip" data-placement="top" title="强化学习的数学原理-第三章">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/AA/RL_04/" data-toggle="tooltip" data-placement="top" title="强化学习的数学原理-第四章">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
                 
