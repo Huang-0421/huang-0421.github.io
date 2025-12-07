@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Jerry Blog</title>
-    <link>https://huang-0421.github.io/post/</link>
+    <link>https://jerryblog.top/post/</link>
     <description>Recent content in Posts on Jerry Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://huang-0421.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jerryblog.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>强化学习的数学原理-第四章</title>
-      <link>https://huang-0421.github.io/AA/RL_04/</link>
+      <link>https://jerryblog.top/AA/RL_04/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/RL_04/</guid>
+      <guid>https://jerryblog.top/AA/RL_04/</guid>
       <description>&lt;h3 id=&#34;值迭代算法value-iteration&#34;&gt;值迭代算法（value iteration）&lt;/h3&gt;&#xA;&lt;p&gt;由上一章可知&#xA;$$&#xA;v_{k+1} =  \max_{\pi \in \Pi} (r_{\pi} + \gamma P_\pi v_k)&#xA;$$&#xA;当 $k \to \infty$ 时，$v_k$ 以指数速度收敛到$v^*$。&lt;/p&gt;&#xA;&lt;p&gt;值迭代算法包括两个步骤：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;mark&gt;策略更新&lt;/mark&gt;：根据上一步计算出的&lt;strong&gt;估计值向量&lt;/strong&gt;，求解出最好的策略。&#xA;$$&#xA;\pi ^ * = \arg\max_{\pi \in \Pi} (r_\pi + \gamma P_\pi v^* )&#xA;$$&lt;/p&gt;</description>
     </item>
     <item>
       <title>强化学习的数学原理-第三章</title>
-      <link>https://huang-0421.github.io/AA/RL_03/</link>
+      <link>https://jerryblog.top/AA/RL_03/</link>
       <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/RL_03/</guid>
+      <guid>https://jerryblog.top/AA/RL_03/</guid>
       <description>&lt;h3 id=&#34;optimal-policies&#34;&gt;optimal policies&lt;/h3&gt;&#xA;&lt;p&gt;从直觉上来看，不同的policy会导致不同的return，而强化学习基本的思想就是找到一个最优策略&lt;code&gt;optimal policies&lt;/code&gt;使得奖励最大。&lt;/p&gt;</description>
     </item>
     <item>
       <title>强化学习的数学原理-第二章</title>
-      <link>https://huang-0421.github.io/AA/RL_02/</link>
+      <link>https://jerryblog.top/AA/RL_02/</link>
       <pubDate>Mon, 03 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/RL_02/</guid>
+      <guid>https://jerryblog.top/AA/RL_02/</guid>
       <description>&lt;h2 id=&#34;强化学习的数学原理第二章&#34;&gt;强化学习的数学原理&amp;ndash;第二章&lt;/h2&gt;&#xA;&lt;p&gt;上一章提到，return十分重要，因为可以用其评估某条线路的好坏。简单来说，return可以通过定义进行计算，即沿着路线依次将reward相加；另外，回报也可以通过&lt;strong&gt;自举法&lt;/strong&gt;(bootstrapping)求出。&lt;/p&gt;</description>
     </item>
     <item>
       <title>强化学习的数学原理-第一章</title>
-      <link>https://huang-0421.github.io/AA/RL_01/</link>
+      <link>https://jerryblog.top/AA/RL_01/</link>
       <pubDate>Wed, 15 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/RL_01/</guid>
+      <guid>https://jerryblog.top/AA/RL_01/</guid>
       <description>&lt;h2 id=&#34;第一章--基本概念&#34;&gt;第一章 · 基本概念&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;状态 state&lt;/code&gt;：在环境中所处的状态，包括位置、速度、加速度等。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;状态空间 state space&lt;/code&gt;：状态空间，表示所有状态的集合&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;动作 Action&lt;/code&gt;：动作，对于一个state有上下左右和静止五种状态。&lt;/p&gt;</description>
     </item>
     <item>
       <title>全国大学生智能汽车竞赛--讯飞组解读(三)</title>
-      <link>https://huang-0421.github.io/AA/smartcar_03/</link>
+      <link>https://jerryblog.top/AA/smartcar_03/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/smartcar_03/</guid>
+      <guid>https://jerryblog.top/AA/smartcar_03/</guid>
       <description>&lt;h2 id=&#34;语音启动&#34;&gt;语音启动&lt;/h2&gt;&#xA;&lt;p&gt;官方给出的语音启动方法是到官网注册账号然后获取语音识别API。由于过程比较复杂，而且会出现报错问题，所以我取巧利用麦克风回调函数来完成语音启动。&lt;/p&gt;</description>
     </item>
     <item>
       <title>全国大学生智能汽车竞赛--讯飞组解读(二)</title>
-      <link>https://huang-0421.github.io/AA/smartcar_02/</link>
+      <link>https://jerryblog.top/AA/smartcar_02/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/smartcar_02/</guid>
+      <guid>https://jerryblog.top/AA/smartcar_02/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;ROS（Robot Operating System，机器人操作系统）是一个面向机器人开发的开源软件框架与工具集。它为机器人系统的构建、运行和协作提供了标准化的基础环境。本篇文章将从ROS的机制原理入手，告诉你ROS能做什么。&lt;/p&gt;</description>
     </item>
     <item>
       <title>全国大学生智能汽车竞赛--讯飞组解读(一)</title>
-      <link>https://huang-0421.github.io/AA/smartcar_01/</link>
+      <link>https://jerryblog.top/AA/smartcar_01/</link>
       <pubDate>Mon, 29 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/smartcar_01/</guid>
+      <guid>https://jerryblog.top/AA/smartcar_01/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;智能车竞赛讯飞组讲解开篇，两年前，我从零开始接触讯飞组比赛，如今已能独立完成框架与算法的实现。一路走来，深刻感受到讯飞组资料匮乏、传承不足。于是，我决定通过这一系列文章，分享比赛流程、技术要点与实现细节，帮助后来者降低入门门槛，从0到1完成一次完整的比赛之旅。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Jerry Blog维护方法</title>
-      <link>https://huang-0421.github.io/AA/first_commit/</link>
+      <link>https://jerryblog.top/AA/first_commit/</link>
       <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/first_commit/</guid>
+      <guid>https://jerryblog.top/AA/first_commit/</guid>
       <description>&lt;h3 id=&#34;新推文&#34;&gt;新推文&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;每篇文章开头，使用yaml格式定义文章的基本信息，格式如下：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;layout&lt;/span&gt;:     &lt;span style=&#34;color:#ae81ff&#34;&gt;post&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;title&lt;/span&gt;:      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;博客维护方法&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;subtitle&lt;/span&gt;:   &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;description&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;记录了上传新文章和更新搜索索引的方法&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;date&lt;/span&gt;:    &lt;span style=&#34;color:#e6db74&#34;&gt;2025-09-24&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;author&lt;/span&gt;:     &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;黄瑞杰&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;image&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/img/postImg/1.jpg&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;URL&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/allpost/first_commit&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;tags&lt;/span&gt;: [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;数据结构&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;二叉树&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;算法&amp;#34;&lt;/span&gt;]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;---&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中，URL需要更改为不同的文件夹，比如second_commit等。因为每个文件夹中只会有一个index.html。&lt;/p&gt;</description>
     </item>
     <item>
       <title>最小生成树</title>
-      <link>https://huang-0421.github.io/AA/post5/</link>
+      <link>https://jerryblog.top/AA/post5/</link>
       <pubDate>Mon, 18 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/post5/</guid>
-      <description>&lt;h1 id=&#34;生成树&#34;&gt;生成树&lt;/h1&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;所有顶点由边连接到一起，但不存在回路的图&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://huang-0421.github.io/img/postImg/13.png&#34; alt=&#34;img&#34;&gt;&#xA;&#xA;&#xA;特点：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一个图可以有许多课不同的生成树。&lt;/li&gt;&#xA;&lt;li&gt;生成树的顶点个数与图的顶点个数相同。&lt;/li&gt;&#xA;&lt;li&gt;生成树是图的极小连通子图，去掉一条边则非联通。&lt;/li&gt;&#xA;&lt;li&gt;一个有n个顶点的连通图的生成树有n-1条边。&lt;/li&gt;&#xA;&lt;li&gt;在生成树中再加一条边必然形成回路。&lt;/li&gt;&#xA;&lt;li&gt;生成树中任意两个顶点间的路径是唯一的。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;无向图的生成树&#34;&gt;无向图的生成树&lt;/h2&gt;&#xA;&lt;p&gt;在遍历顶点的同时记录下经过的边，边所构成的集合+顶点集合就是连通图的生成树。&lt;/p&gt;</description>
+      <guid>https://jerryblog.top/AA/post5/</guid>
+      <description>&lt;h1 id=&#34;生成树&#34;&gt;生成树&lt;/h1&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;所有顶点由边连接到一起，但不存在回路的图&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&#xA;  &lt;img src=&#34;https://jerryblog.top/img/postImg/13.png&#34; alt=&#34;img&#34;&gt;&#xA;&#xA;&#xA;特点：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;一个图可以有许多课不同的生成树。&lt;/li&gt;&#xA;&lt;li&gt;生成树的顶点个数与图的顶点个数相同。&lt;/li&gt;&#xA;&lt;li&gt;生成树是图的极小连通子图，去掉一条边则非联通。&lt;/li&gt;&#xA;&lt;li&gt;一个有n个顶点的连通图的生成树有n-1条边。&lt;/li&gt;&#xA;&lt;li&gt;在生成树中再加一条边必然形成回路。&lt;/li&gt;&#xA;&lt;li&gt;生成树中任意两个顶点间的路径是唯一的。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;无向图的生成树&#34;&gt;无向图的生成树&lt;/h2&gt;&#xA;&lt;p&gt;在遍历顶点的同时记录下经过的边，边所构成的集合+顶点集合就是连通图的生成树。&lt;/p&gt;</description>
     </item>
     <item>
       <title>有限状态自动机</title>
-      <link>https://huang-0421.github.io/AA/post4/</link>
+      <link>https://jerryblog.top/AA/post4/</link>
       <pubDate>Sun, 10 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/post4/</guid>
+      <guid>https://jerryblog.top/AA/post4/</guid>
       <description>&lt;p&gt;作者最近在leetcode上遇到了可以用&lt;strong&gt;有限状态自动机&lt;/strong&gt;来解决的题目，在此记录自动状态机思想及其应用。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;有限状态自动机（以下简称「自动机」）是一类计算模型。它包含一系列状态，这些状态中：有一种特殊的状态，被称作**「初始状态」&lt;strong&gt;。还有一系列状态被称为&lt;/strong&gt;「接受状态」**，它们组成了一个特殊的集合。其中，一个状态可能既是「初始状态」，也是「接受状态」。&#xA;起初，这个自动机处于「初始状态」。随后，**它顺序地读取字符串中的每一个字符，并根据当前状态和读入的字符，按照某个事先约定好的「转移规则」，从当前状态转移到下一个状态；当状态转移完成后，它就读取下一个字符。**当字符串全部读取完毕后，如果自动机处于某个「接受状态」，则判定该字符串「被接受」；否则，判定该字符串「被拒绝」。&lt;/p&gt;</description>
     </item>
     <item>
       <title>哈夫曼树的建立</title>
-      <link>https://huang-0421.github.io/AA/post3/</link>
+      <link>https://jerryblog.top/AA/post3/</link>
       <pubDate>Mon, 04 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/post3/</guid>
+      <guid>https://jerryblog.top/AA/post3/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;哈夫曼树也叫&lt;strong&gt;最优二叉树&lt;/strong&gt;，它可以用于数据压缩，实现编码和解码的过程。下文将描述哈夫曼树的构建方法以及其编码思想的应用。&lt;/p&gt;&#xA;&lt;h2 id=&#34;基础知识&#34;&gt;基础知识&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;路径&lt;/strong&gt;：两个节点之间的线。&lt;/p&gt;</description>
     </item>
     <item>
       <title>二叉树的遍历方法</title>
-      <link>https://huang-0421.github.io/AA/post1/</link>
+      <link>https://jerryblog.top/AA/post1/</link>
       <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/post1/</guid>
+      <guid>https://jerryblog.top/AA/post1/</guid>
       <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;&#xA;&lt;p&gt;二叉树的遍历方法分为&lt;strong&gt;深度优先遍历&lt;/strong&gt;与&lt;strong&gt;宽度优先遍历&lt;/strong&gt;，其中深度优先遍历又以根节点的访问时机分为&lt;strong&gt;前序遍历&lt;/strong&gt;、&lt;strong&gt;中序遍历&lt;/strong&gt;与&lt;strong&gt;后序遍历&lt;/strong&gt;，而宽度优先遍历（层序遍历）则是一层一层往下遍历。&lt;/p&gt;</description>
     </item>
     <item>
       <title>KMP算法理解</title>
-      <link>https://huang-0421.github.io/AA/post2/</link>
+      <link>https://jerryblog.top/AA/post2/</link>
       <pubDate>Thu, 24 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/post2/</guid>
+      <guid>https://jerryblog.top/AA/post2/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;KMP算法是我在学习《数据结构与算法》时遇到的一种解决字符串匹配问题的高效算法。面对这个问题，我最开始想到的是暴力算法，也就是一位一位的往下比对。&lt;/p&gt;</description>
     </item>
   </channel>

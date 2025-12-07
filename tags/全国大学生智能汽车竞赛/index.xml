@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>全国大学生智能汽车竞赛 on Jerry Blog</title>
-    <link>https://huang-0421.github.io/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/</link>
+    <link>https://jerryblog.top/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/</link>
     <description>Recent content in 全国大学生智能汽车竞赛 on Jerry Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 05 Oct 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://huang-0421.github.io/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jerryblog.top/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>全国大学生智能汽车竞赛--讯飞组解读(三)</title>
-      <link>https://huang-0421.github.io/AA/smartcar_03/</link>
+      <link>https://jerryblog.top/AA/smartcar_03/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/smartcar_03/</guid>
+      <guid>https://jerryblog.top/AA/smartcar_03/</guid>
       <description>&lt;h2 id=&#34;语音启动&#34;&gt;语音启动&lt;/h2&gt;&#xA;&lt;p&gt;官方给出的语音启动方法是到官网注册账号然后获取语音识别API。由于过程比较复杂，而且会出现报错问题，所以我取巧利用麦克风回调函数来完成语音启动。&lt;/p&gt;</description>
     </item>
     <item>
       <title>全国大学生智能汽车竞赛--讯飞组解读(二)</title>
-      <link>https://huang-0421.github.io/AA/smartcar_02/</link>
+      <link>https://jerryblog.top/AA/smartcar_02/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/smartcar_02/</guid>
+      <guid>https://jerryblog.top/AA/smartcar_02/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;ROS（Robot Operating System，机器人操作系统）是一个面向机器人开发的开源软件框架与工具集。它为机器人系统的构建、运行和协作提供了标准化的基础环境。本篇文章将从ROS的机制原理入手，告诉你ROS能做什么。&lt;/p&gt;</description>
     </item>
     <item>
       <title>全国大学生智能汽车竞赛--讯飞组解读(一)</title>
-      <link>https://huang-0421.github.io/AA/smartcar_01/</link>
+      <link>https://jerryblog.top/AA/smartcar_01/</link>
       <pubDate>Mon, 29 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/AA/smartcar_01/</guid>
+      <guid>https://jerryblog.top/AA/smartcar_01/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;智能车竞赛讯飞组讲解开篇，两年前，我从零开始接触讯飞组比赛，如今已能独立完成框架与算法的实现。一路走来，深刻感受到讯飞组资料匮乏、传承不足。于是，我决定通过这一系列文章，分享比赛流程、技术要点与实现细节，帮助后来者降低入门门槛，从0到1完成一次完整的比赛之旅。&lt;/p&gt;</description>
     </item>
   </channel>

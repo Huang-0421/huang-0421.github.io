@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Jerry Blog</title>
-    <link>https://huang-0421.github.io/tags/</link>
+    <link>https://jerryblog.top/tags/</link>
     <description>Recent content in Tags on Jerry Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://huang-0421.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jerryblog.top/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>强化学习的数学原理</title>
-      <link>https://huang-0421.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://jerryblog.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://jerryblog.top/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     <item>
       <title>全国大学生智能汽车竞赛</title>
-      <link>https://huang-0421.github.io/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/</link>
+      <link>https://jerryblog.top/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/</link>
       <pubDate>Sun, 05 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/</guid>
+      <guid>https://jerryblog.top/tags/%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E7%AB%9E%E8%B5%9B/</guid>
       <description></description>
     </item>
     <item>
       <title>数据结构与算法</title>
-      <link>https://huang-0421.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</link>
+      <link>https://jerryblog.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</link>
       <pubDate>Mon, 18 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://huang-0421.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://jerryblog.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
   </channel>
